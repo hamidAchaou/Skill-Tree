@@ -29,18 +29,39 @@ class Stagiaire extends Dbh {
         return $stagiairesData;
     }
 
-// insert data stagiaire
-public function addStagiaire($Nom, $Type, $CNE, $Ville_Id) {
-    $sql = "INSERT INTO personne (Nom, Type, CNE, Ville_Id) VALUES (?, ?, ?, ?)";
-    $stmt = $this->connect()->prepare($sql);
+    // Get One Stagiaire
+    public function getOneStagiaire($Id) {
+        $stmt = $this->connect()->prepare('SELECT * FROM personne WHERE Id = ?');
+        if(!$stmt->execute([$Id])) {
+            header("location: ../Application/Gestion_Stagiaire.php");
+            $stmt = null;
+            exit();
+        }
 
-    if (!$stmt->execute([$Nom, $Type, $CNE, $Ville_Id])) {
-        header('Location: ../../Presentation/create.Stager.php?error=failde');
-        exit();
-    } else {
-        header('Location: ../../Presentation/index.php?addPersonne=success');
+        $stagiaire = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stagiaireData = [];
+
+        $GestionStagire = new Gestion();
+        $GestionStagire->setId($stagiaire[0]['Id']);
+        $GestionStagire->setNom($stagiaire[0]['Nom']);
+        $GestionStagire->setCne($stagiaire[0]['CNE']);
+        array_push($stagiaireData, $GestionStagire);
+
+        return $stagiaireData;
     }
-}
+
+    // insert data stagiaire
+    public function addStagiaire($Nom, $Type, $CNE, $Ville_Id) {
+        $sql = "INSERT INTO personne (Nom, Type, CNE, Ville_Id) VALUES (?, ?, ?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+
+        if (!$stmt->execute([$Nom, $Type, $CNE, $Ville_Id])) {
+            header('Location: ../../Presentation/create.Stager.php?error=failde');
+            exit();
+        } else {
+            header('Location: ../../Presentation/index.php?addPersonne=success');
+        }
+    }
 }
 
 

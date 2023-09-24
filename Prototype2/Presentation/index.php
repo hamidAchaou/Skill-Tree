@@ -78,8 +78,8 @@
                             <td scope="row"><?php echo $stagiaire->getNon() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
                             <td scope="row" class="d-flex justify-content-center gap-3">
-                                <a class="nav-link btn btn-danger text-center text-light create-stagiaire ml-3" href="../Presentation/create.Stager.php">DELETE</a>
-                                <a class="nav-link btn btn-info text-center text-light create-stagiaire ml-3" href="../Presentation/create.Stager.php">EDIT</a>
+                                <a class="nav-link btn btn-danger text-center text-light create-stagiaire ml-3" href="">DELETE</a>
+                                <a class="nav-link btn btn-info text-center text-light create-stagiaire ml-3" href="./edit.Stager.php?Id=<?php echo $stagiaire->getId() ?>">EDIT</a>
                             </td>
                         </tr>
 
