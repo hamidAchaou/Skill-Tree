@@ -28,7 +28,19 @@ class Stagiaire {
         }
 
         $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $stagiaires;
+
+        $stagiairesData = [];
+        include "./Gestion_Stagiaire.php";
+
+        foreach($stagiaires as $stagiaire) {
+            $GestionStagire = new Gestion();
+            $GestionStagire->setId($stagiaire['Id']);
+            $GestionStagire->setNom($stagiaire['Nom']);
+            $GestionStagire->setCne($stagiaire['CNE']);
+            array_push($stagiairesData, $GestionStagire);
+        }
+
+        return $stagiairesData;
     }
 
 }

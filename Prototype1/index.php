@@ -30,17 +30,17 @@
                 include "./Stagiaire.php";
                 // get Stagiaire
                 $dataStage = new Stagiaire();
-                $info = $dataStage->getStagiare();
+                $dataStagiaire = $dataStage->getStagiare();
 
 
                 // loop for display stagiaire
-                foreach ($info as $stagiaire) :
+                foreach ($dataStagiaire as $stagiaire) :
                 ?>
 
                     <tr>
-                        <td scope="row"><?php echo $stagiaire['Id'] ?></td>
-                        <td scope="row"><?php echo $stagiaire['Nom'] ?></td>
-                        <td scope="row"><?php echo $stagiaire['CNE'] ?></td>
+                            <td scope="row"><?php echo $stagiaire->getNon() ?></td>
+                            <td scope="row"><?php echo $stagiaire->getNon() ?></td>
+                            <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
                     </tr>
 
                 <?php
