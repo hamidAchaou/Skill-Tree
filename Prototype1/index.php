@@ -27,7 +27,7 @@
 
                 <!-- show Stagiaire -->
                 <?php
-                include "./Stagiaire.php";
+                include "./Gestion_Stagiaire.php";
                 // get Stagiaire
                 $dataStage = new Stagiaire();
                 $dataStagiaire = $dataStage->getStagiare();

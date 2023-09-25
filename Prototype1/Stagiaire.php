@@ -1,49 +1,40 @@
 <?php
+class Gestion {
+    private $id;
+    private $nom;
+    private $CNE;
+    private $Ville_Id ;
 
-class Stagiaire {
-
-    // Connect Databases
-    private $host = 'localhost';
-    private $user = 'root';
-    private $password = '';
-    private $dbName = 'arbrecompetences_prototype';
-
-    private function connect() {
-        try {
-            $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbName;
-            $pdo = new PDO($dsn, $this->user, $this->password);
-            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            return $pdo;
-        } catch(PDOException $e) {
-            echo 'connect is error' . $e->getMessage();
-        }
+    public function setId($Id) {
+        $this->id = $Id;
     }
 
-    // getstagire
-    public function getStagiare() {
-        $stmt = $this->connect()->prepare("SELECT * FROM personne WHERE Type = 'Stagiaire' ");
-        if(!$stmt->execute()) {
-            $stmt = null;
-            exit();
-        }
-
-        $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $stagiairesData = [];
-        include "./Gestion_Stagiaire.php";
-
-        foreach($stagiaires as $stagiaire) {
-            $GestionStagire = new Gestion();
-            $GestionStagire->setId($stagiaire['Id']);
-            $GestionStagire->setNom($stagiaire['Nom']);
-            $GestionStagire->setCne($stagiaire['CNE']);
-            array_push($stagiairesData, $GestionStagire);
-        }
-
-        return $stagiairesData;
+    public function getId() {
+        return $this->id;
     }
 
+    public function setNom($Non) {
+        $this->nom = $Non;
+    }
+    
+    public function getNon() {
+        return $this->nom;
+    }
+
+    public function setCne($CNE) {
+        $this->CNE = $CNE;
+    }
+    
+    public function getCNE() {
+        return $this->CNE;
+    }
+
+    public function setVille_Id ($Ville_Id ) {
+        $this->Ville_Id  = $Ville_Id ;
+    }
+    
+    public function getVille_Id () {
+        return $this->Ville_Id ;
+    }
 }
-
-
 ?>
