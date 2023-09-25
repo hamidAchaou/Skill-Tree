@@ -3,7 +3,6 @@ class Gestion {
     private $id;
     private $nom;
     private $CNE;
-    private $Ville_Id ;
 
     public function setId($Id) {
         $this->id = $Id;
@@ -17,7 +16,7 @@ class Gestion {
         $this->nom = $Non;
     }
     
-    public function getNon() {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -27,14 +26,6 @@ class Gestion {
     
     public function getCNE() {
         return $this->CNE;
-    }
-
-    public function setVille_Id ($Ville_Id ) {
-        $this->Ville_Id  = $Ville_Id ;
-    }
-    
-    public function getVille_Id () {
-        return $this->Ville_Id ;
     }
 }
 ?>

@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/index.php">Stagiaire</a>
+                        <a class="nav-link" href="./index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-success text-light create-stagiaire" href="../Presentation/create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link btn btn-success text-light create-stagiaire" href="./create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +56,6 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Ville</th>
                         <th scope="col">CNE</th>
                         <th scope="col">DELETE & EDIT</th>
                     </tr>
@@ -66,7 +65,7 @@
                     <!-- Show Stagiaire -->
                     <?php
                     // get Stagiaire
-                    include "../Databases/Stagiaire.php";
+                    include "./Gestion_Stagiaire.php";
                     $dataStage = new Stagiaire();
                     $info = $dataStage->getStagiare();
 
@@ -89,8 +88,7 @@
 
                         <tr>
                             <td scope="row"><?php echo $stagiaire->getId() ?></td>
-                            <td scope="row"><?php echo $stagiaire->getNon() ?></td>
-                            <td scope="row"><?php echo $stagiaire->getNon() ?></td>
+                            <td scope="row"><?php echo $stagiaire->getNom() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
                             <td scope="row" class="d-flex justify-content-center gap-3">
                                 <a class="nav-link btn btn-danger text-center text-light create-stagiaire ml-3" href="">DELETE</a>
