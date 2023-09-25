@@ -25,16 +25,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link" href="../Presentation/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/index.php">Show Stagiaire</a>
+                        <a class="nav-link btn btn-success text-light create-stagiaire" href="../Presentation/create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- =========================== END NavBar ==================== -->
+    
     <!-- =============== Form Add Stagers ===================-->
     <div class="container createStagiaire my-5 card pb-3">
 

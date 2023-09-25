@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- style CSS -->
-    <link rel="stylesheet" href="./asset//style.css">
+    <link rel="stylesheet" href="./css//style.css">
 
     <title>affichage des stagiaire</title>
 </head>
@@ -27,19 +27,20 @@
 
                 <!-- show Stagiaire -->
                 <?php
+                include "./Stagiaire.php";
                 // get Stagiaire
-                include "../Databases_tier/Stagiaire.php";
                 $dataStage = new Stagiaire();
                 $info = $dataStage->getStagiare();
+
 
                 // loop for display stagiaire
                 foreach ($info as $stagiaire) :
                 ?>
 
                     <tr>
-                        <td scope="row"><?php echo $stagiaire->getId() ?></td>
-                        <td scope="row"><?php echo $stagiaire->getNon() ?></td>
-                        <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
+                        <td scope="row"><?php echo $stagiaire['Id'] ?></td>
+                        <td scope="row"><?php echo $stagiaire['Nom'] ?></td>
+                        <td scope="row"><?php echo $stagiaire['CNE'] ?></td>
                     </tr>
 
                 <?php

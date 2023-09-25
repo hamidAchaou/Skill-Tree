@@ -4,6 +4,7 @@ include_once  '../Application/Gestion_Stagiaire.php';
 
 class Stagiaire extends Dbh {
 
+    
     // get Data Stagiaire
     public function getStagiare() {
         $stmt = $this->connect()->prepare("SELECT * FROM personne WHERE Type = 'Stagiaire' ");

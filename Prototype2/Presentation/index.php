@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/index.php">Show Stagiaire</a>
+                        <a class="nav-link" href="../Presentation/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-success text-light create-stagiaire" href="../Presentation/create.Stager.php">Create Stagiaire</a>
@@ -38,15 +38,15 @@
 
 
     <main>
-        <div class="container">
-            <h1 class="text-center title">Stagiaire Management</h1>
+        <div class="container mt-5">
+            <!-- <h1 class="text-center title">Stagiaire Management</h1> -->
 
             <?php
             if (isset($_GET['addPersonne']) && $_GET['addPersonne'] == "success") {
                 echo '
-                <div class="alert alert-success h4 text-center" role="alert">
-                    Add Person successful.
-                </div>';
+                    <div class="alert alert-success h4 text-center" role="alert">
+                        Add Person successful.
+                    </div>';
             }
             ?>
 
@@ -55,9 +55,10 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Ville</th>
                         <th scope="col">CNE</th>
-                        <th scope="col">More Details</th>
+                        <th scope="col">DELETE & EDIT</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,12 +70,26 @@
                     $dataStage = new Stagiaire();
                     $info = $dataStage->getStagiare();
 
+                    // Define the number of results per page and current page
+                    $perPage = 6;
+                    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                    // Get the total number of stagiaires
+                    $totalStagiaires = count($info);
+
+                    // Calculate the total number of pages
+                    $totalPages = ceil($totalStagiaires / $perPage);
+
+                    $startSlice = ($currentPage - 1) * $perPage;
+                    $dataRange = array_slice($info, $startSlice, $perPage );
+
                     // Loop for displaying stagiaire
-                    foreach ($info as $stagiaire) :
+                    foreach ($dataRange as $stagiaire) :
                     ?>
 
                         <tr>
                             <td scope="row"><?php echo $stagiaire->getId() ?></td>
+                            <td scope="row"><?php echo $stagiaire->getNon() ?></td>
                             <td scope="row"><?php echo $stagiaire->getNon() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
                             <td scope="row" class="d-flex justify-content-center gap-3">
@@ -88,6 +103,26 @@
                     ?>
                 </tbody>
             </table>
+
+            <!-- Pagination -->
+            <?php
+            ?>
+            <div class="pagination">
+                <ul class="pagination justify-content-center">
+                    <?php
+
+
+                    // Generate pagination links
+                    for ($i = 1; $i <= $totalPages; $i++) {
+                        echo '<li class="page-item';
+                        if ($i == $currentPage) {
+                            echo ' active';
+                        }
+                        echo '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                    }
+                    ?>
+                </ul>
+            </div>
         </div>
     </main>
 
