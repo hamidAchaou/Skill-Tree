@@ -1,6 +1,6 @@
 <?php
 
-class Stagiaire {
+class GestionStagiaire {
 
     /* ================================================================
      == // Connect Databases
@@ -35,10 +35,10 @@ class Stagiaire {
         $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $stagiairesData = [];
-        include "./Stagiaire.php";
+        include "../entity/Stagiaire.php";
 
         foreach($stagiaires as $stagiaire) {
-            $GestionStagire = new Gestion();
+            $GestionStagire = new Stagiaire();
             $GestionStagire->setId($stagiaire['Id']);
             $GestionStagire->setNom($stagiaire['Nom']);
             $GestionStagire->setCne($stagiaire['CNE']);
@@ -63,7 +63,7 @@ class Stagiaire {
         $stagiaire = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stagiaireData = [];
 
-        $GestionStagire = new Gestion();
+        $GestionStagire = new Stagiaire();
         $GestionStagire->setId($stagiaire[0]['Id']);
         $GestionStagire->setNom($stagiaire[0]['Nom']);
         $GestionStagire->setCne($stagiaire[0]['CNE']);
@@ -83,9 +83,8 @@ class Stagiaire {
         if (!$stmt->execute([$Nom, $CNE])) {
             header('Location: ./create.Stager.php?error=failde');
             exit();
-        } else {
-            header('Location: ./index.php?addPersonne=success');
         }
+        header('Location: ../UI/index.php?addPersonne=success');
     }
 
     /* ================================================================
@@ -96,7 +95,7 @@ class Stagiaire {
         $stmt = $this->connect()->prepare($sql);
     
         if($stmt->execute([$Nom, $CNE, $Id])) {
-            header('Location: ./index.php?UpdatePersonne=success');
+            header('Location: ../UI/index.php?UpdatePersonne=success');
             $stmt = null;
             exit();
         }

@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php">Stagiaire</a>
+                        <a class="nav-link" href="../UI/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-success text-light create-stagiaire" href="./create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link btn btn-success text-light create-stagiaire" href="../UI/create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +59,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Nom</th>
                         <th scope="col">CNE</th>
                         <th scope="col">DELETE & EDIT</th>
@@ -70,8 +69,8 @@
                     <!-- Show Stagiaire -->
                     <?php
                     // get Stagiaire
-                    include "./Gestion_Stagiaire.php";
-                    $dataStage = new Stagiaire();
+                    include "../Gestion/Gestion_Stagiaire.php";
+                    $dataStage = new GestionStagiaire();
                     $info = $dataStage->getStagiare();
 
                     // Define the number of results per page and current page
@@ -92,14 +91,13 @@
                     ?>
 
                         <tr>
-                            <td scope="row"><?php echo $stagiaire->getId() ?></td>
                             <td scope="row"><?php echo $stagiaire->getNom() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
                             <td scope="row" class="d-flex justify-content-center gap-3">
                                 <a class="nav-link btn btn-info text-center text-light create-stagiaire ml-3" href="./edit.Stager.php?Id=<?php echo $stagiaire->getId() ?>">EDIT</a>
                                 <!-- Button trigger modal -->
                                 <input type="hidden" id="grtIdStagiaire" value="<?php echo $stagiaire->getId() ?>">
-                                <button type="button" class="btn btn-danger" onclick="openDeleteModal(<?php echo $stagiaire->getId() ?>)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                <button type="button" class="btn btn-danger ml-3" onclick="openDeleteModal(<?php echo $stagiaire->getId() ?>)" data-toggle="modal" data-target="#deleteModal">Delete</button>
 
                             </td>
                         </tr>
@@ -137,7 +135,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="./entity/deleteStagiaire.php" method="POST">
+                <form action="../entity/deleteStagiaire.php" method="POST">
                     <input type="hidden" id='confirm_Delete' name="id_Confirmed">
                     <div class="modal-body">
                         Are you sure you want to delete this stagiaire?

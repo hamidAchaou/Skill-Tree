@@ -1,6 +1,6 @@
 <?php
-include_once "./Stagiaire.php";
-include_once "./Gestion_Stagiaire.php";
+include_once "../Gestion/Gestion_Stagiaire.php";
+include_once "../entity/Stagiaire.php";
 if(isset($_POST['updateStagiaire'])) {
     $Id = $_GET['Id'];
     $Nom = $_POST['nom'];
@@ -16,7 +16,7 @@ if(isset($_POST['updateStagiaire'])) {
     
     $stagiaireDataUpdate = [];
 
-    $GestionStagire = new Gestion();
+    $GestionStagire = new Stagiaire();
     $GestionStagire->setNom($Nom);
     $GestionStagire->setCne($CNE);
     $GestionStagire->setCne($Id);
@@ -24,7 +24,7 @@ if(isset($_POST['updateStagiaire'])) {
     array_push($stagiaireDataUpdate, $GestionStagire);
 
 
-    $AddStagiare = new Stagiaire();
+    $AddStagiare = new GestionStagiaire();
     $AddStagiare->update($Nom, $CNE, $Id);
 
 }

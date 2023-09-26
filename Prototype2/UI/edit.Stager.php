@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link" href="../UI/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/index.php">Show Stagiaire</a>
+                        <a class="nav-link" href="../UI/">Show Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -50,12 +50,12 @@
     $Id = $_GET['Id'];
 
     // declaration Stagire and Gestion 
-    include "./Stagiaire.php";
-    include_once "./Gestion_Stagiaire.php";
+    include "../entity/Stagiaire.php";
+    include_once "../Gestion/Gestion_Stagiaire.php";
     
     // get One Stagiaire
-    $dataStage = new Stagiaire();    
-    $dataSta = new Gestion();    
+    $dataStage = new GestionStagiaire();    
+    $dataSta = new Stagiaire();    
     $stagiaireData = $dataStage->getOneStagiaire($Id);
 
     // Access the retrieved data
@@ -66,7 +66,7 @@
     ?>
 
         <h1>Add Personne</h1>
-        <form action="./update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
+        <form action="../entity/update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
             <div class="form-group">
                 <label for="nom">Nom*:</label>
                 <input type="text" class="form-control" id="nom" value="<?php echo $nom; ?>" name="nom" required>

@@ -48,7 +48,7 @@
     ?>
 
         <h1>Add Personne</h1>
-        <form action="./Gestion_CreateStagiaire.php" method="POST">
+        <form action="../entity/CreateStagiaire.php" method="POST">
             <div class="form-group">
                 <label for="nom">Nom*:</label>
                 <input type="text" class="form-control" id="nom" name="nom" required>

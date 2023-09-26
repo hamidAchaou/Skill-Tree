@@ -1,5 +1,5 @@
 <?php
-class Gestion {
+class Stagiaire {
     private $id;
     private $nom;
     private $CNE;
