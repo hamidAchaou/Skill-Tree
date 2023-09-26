@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link" href="../UI/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/index.php">Show Stagiaire</a>
+                        <a class="nav-link" href="../UI/create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -50,12 +50,12 @@
     $Id = $_GET['Id'];
 
     // declaration Stagire and Gestion 
-    include "./Stagiaire.php";
-    include_once "./Gestion_Stagiaire.php";
+    include "../Gestions/gestion_Stagiaire.php";
+    include_once "../entity/stagiaire.php";
     
     // get One Stagiaire
     $dataStage = new Stagiaire();    
-    $dataSta = new Gestion();    
+    $dataStage = new GestionStagiaire();    
     $stagiaireData = $dataStage->getOneStagiaire($Id);
 
     // Access the retrieved data
@@ -67,13 +67,46 @@
 
         <h1>Add Personne</h1>
         <form action="./update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
+
             <div class="form-group">
                 <label for="nom">Nom*:</label>
                 <input type="text" class="form-control" id="nom" value="<?php echo $nom; ?>" name="nom" required>
             </div>
+
             <div class="form-group">
                 <label for="cne">CNE:</label>
                 <input type="text" class="form-control" value="<?php echo $cne; ?>" id="cne" name="cne">
+            </div>
+
+            <div class="form-group d-none">
+                <label for="type">Type*:</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="Stagiaire">Stagiaire</option>
+                    <option value="Stagiaire">Stagiaire</option>
+                    <option value="Stagiaire">Stagiaire</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ville">Ville*:</label>
+
+                <select class="form-control" id="ville" name="ville" required>
+                    <!--================== start get city in databases =====================-->
+                    <?php
+                    include "../Gestions/Gestion_Ville.php";
+                    $getVilles = new GestionVille();
+                    $villes = $getVilles->getVill();
+                    // print_r($ville);
+                    foreach ($villes as $ville) :
+                        $selected = ($ville->getId() == $villeId) ? "selected" : "";
+                    ?>
+                        <option value="<?php echo $ville->getId(); ?>" <?php echo $selected; ?>><?php echo $ville->getNom(); ?></option>
+                    <?php
+                    endforeach;
+                    ?>
+
+                    <!--================== end get city in databases =====================-->
+                </select>
             </div>
             <button type="submit" class="btn btn-primary" name="updateStagiaire">Update</button>
         </form>

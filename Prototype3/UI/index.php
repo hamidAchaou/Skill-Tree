@@ -62,6 +62,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nom</th>
                         <th scope="col">CNE</th>
+                        <th scope="col">City</th>
                         <th scope="col">DELETE & EDIT</th>
                     </tr>
                 </thead>
@@ -70,22 +71,22 @@
                     <!-- Show Stagiaire -->
                     <?php
                     // get Stagiaire
-                    include "./Gestion_Stagiaire.php";
-                    $dataStage = new Stagiaire();
-                    $info = $dataStage->getStagiare();
+                    include "../Gestions/gestion_Stagiaire.php";
+                    $dataStage = new GestionStagiaire();
+                    $stagiaireInfo = $dataStage->getStagiaires();
 
                     // Define the number of results per page and current page
                     $perPage = 6;
                     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
 
                     // Get the total number of stagiaires
-                    $totalStagiaires = count($info);
+                    $totalStagiaires = count($stagiaireInfo);
 
                     // Calculate the total number of pages
                     $totalPages = ceil($totalStagiaires / $perPage);
 
                     $startSlice = ($currentPage - 1) * $perPage;
-                    $dataRange = array_slice($info, $startSlice, $perPage);
+                    $dataRange = array_slice($stagiaireInfo, $startSlice, $perPage);
 
                     // Loop for displaying stagiaire
                     foreach ($dataRange as $stagiaire) :
@@ -95,12 +96,11 @@
                             <td scope="row"><?php echo $stagiaire->getId() ?></td>
                             <td scope="row"><?php echo $stagiaire->getNom() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
+                            <td scope="row"><?php echo $stagiaire->getVilleNom() ?></td>
                             <td scope="row" class="d-flex justify-content-center gap-3">
-                                <a class="nav-link btn btn-info text-center text-light create-stagiaire ml-3" href="./edit.Stager.php?Id=<?php echo $stagiaire->getId() ?>">EDIT</a>
+                                <a class="nav-link btn btn-info ml-3 text-center text-light create-stagiaire ml-3" href="./edit.Stager.php?Id=<?php echo $stagiaire->getId() ?>">EDIT</a>
                                 <!-- Button trigger modal -->
-                                <input type="hidden" id="grtIdStagiaire" value="<?php echo $stagiaire->getId() ?>">
-                                <button type="button" class="btn btn-danger" onclick="openDeleteModal(<?php echo $stagiaire->getId() ?>)" data-toggle="modal" data-target="#deleteModal">Delete</button>
-
+                                <button type="button" class="btn btn-danger ml-3" onclick="openDeleteModal(<?php echo $stagiaire->getId() ?>)" data-toggle="modal" data-target="#deleteModal">Delete</button>
                             </td>
                         </tr>
 
@@ -110,6 +110,8 @@
                 </tbody>
             </table>
 
+            <!-- Hidden input field for stagiaire ID -->
+            <input type="hidden" id="grtIdStagiaire" value="">
             <!-- Pagination -->
             <?php
             ?>
@@ -137,17 +139,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="./entity/deleteStagiaire.php" method="POST">
-                    <input type="hidden" id='confirm_Delete' name="id_Confirmed">
-                    <div class="modal-body">
-                        Are you sure you want to delete this stagiaire?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name='btn_Delete_Stagiaire'>Delete</button>
-                    </div>
-                </form>
-
+                <div class="modal-body">
+                    Are you sure you want to delete this stagiaire?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteStagiaire()">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -160,7 +158,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Custom JavaScript -->
-    <script src="./asset/js/main.js"></script>
+    <script src="./asset/script.js"></script>
 
 </body>
 

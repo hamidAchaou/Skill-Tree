@@ -88,6 +88,35 @@ class Stagiaire {
         }
     }
 
+    /* ================================================================
+     == // Updatee data stagiaire
+    =================================================================*/
+    public function update($Nom, $CNE, $Id) {
+        $sql = "UPDATE personne SET Nom = ?, CNE = ? WHERE Id = ?";
+        $stmt = $this->connect()->prepare($sql);
+    
+        if($stmt->execute([$Nom, $CNE, $Id])) {
+            header('Location: ./index.php?UpdatePersonne=success');
+            $stmt = null;
+            exit();
+        }
+    }
+
+    /* ================================================================
+     == // Delte Stagiaire
+    =================================================================*/
+    public function deleteStagiaire($Id) {
+        // $Id = $stgiaire->getId();
+        $sql = "DELETE FROM personne WHERE Id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        if($stmt->execute([$Id])) {
+            // header("location: ../");
+            $stmt = null;
+            exit();
+        }
+
+
+    }
 }
 
 

@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- style CSS -->
-    <link rel="stylesheet" href="./asset/style.css">
+    <link rel="stylesheet" href="./asset//style.css">
 
     <title>Create des stagiaire</title>
 </head>
-
 <body>
 
     <!-- =========================== start NavBar ==================== -->
@@ -26,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link" href="../UI/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Presentation/index.php">Show Stagiaire</a>
+                    <a class="nav-link btn btn-success text-light create-stagiaire" href="./create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -45,42 +44,56 @@
             echo '<p class="text-danger text-center error-message pt-2 pb-2">Something went wrong. Please try again.</p>';
         }
     }
-
-    // Get ID Stagiaire
-    $Id = $_GET['Id'];
-
-    // declaration Stagire and Gestion 
-    include "./Stagiaire.php";
-    include_once "./Gestion_Stagiaire.php";
-    
-    // get One Stagiaire
-    $dataStage = new Stagiaire();    
-    $dataSta = new Gestion();    
-    $stagiaireData = $dataStage->getOneStagiaire($Id);
-
-    // Access the retrieved data
-    $id = $stagiaireData[0]->getId();
-    $nom = $stagiaireData[0]->getNom();
-    $cne = $stagiaireData[0]->getCNE();
-
     ?>
 
         <h1>Add Personne</h1>
-        <form action="./update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
+        <form action="../entity/create_stagiaire.php" method="POST">
             <div class="form-group">
                 <label for="nom">Nom*:</label>
-                <input type="text" class="form-control" id="nom" value="<?php echo $nom; ?>" name="nom" required>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Type*:</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="personne">Personne</option>
+                    <option value="Stagiaire">Stagiaire</option>
+                    <option value="Formateur">Formateur</option>
+                </select>
+
+
             </div>
             <div class="form-group">
                 <label for="cne">CNE:</label>
-                <input type="text" class="form-control" value="<?php echo $cne; ?>" id="cne" name="cne">
+                <input type="text" class="form-control" id="cne" name="cne">
             </div>
-            <button type="submit" class="btn btn-primary" name="updateStagiaire">Update</button>
+            <div class="form-group">
+                <label for="ville">Ville*:</label>
+
+                <select class="form-control" id="ville" name="ville" required>
+                    <!--================== start get city in databases =====================-->
+                    <?php
+                    include "../Gestions/Gestion_Ville.php";
+                    $getVilles = new GestionVille();
+                    $villes = $getVilles->getVill();
+                    // print_r($ville);
+                    foreach ($villes as $ville) :
+                    ?>
+                        <option value="<?php echo $ville->getId() ?>"><?php echo $ville->getNom() ?></option>
+                    <?php
+                    endforeach;
+                    ?>
+                    <!--================== end get city in databases =====================-->
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" name="createStagiaire">ADD Personne</button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
 </body>
 
 </html>
