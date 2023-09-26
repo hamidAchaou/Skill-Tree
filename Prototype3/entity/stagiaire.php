@@ -46,11 +46,11 @@ class Stagiaire {
         return $this->Ville_Id ;
     }
     
-    public function setVilleNom ($VilleNom ) {
+    public function setVille_Nom ($VilleNom ) {
         $this->Ville_Nom  = $VilleNom ;
     }
     
-    public function getVilleNom () {
+    public function getVille_Nom () {
         return $this->Ville_Nom ;
     }
 }

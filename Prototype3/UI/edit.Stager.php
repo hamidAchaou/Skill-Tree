@@ -36,44 +36,37 @@
         </div>
     </nav>
     <!-- =========================== END NavBar ==================== -->
+
     <!-- =============== Form Add Stagers ===================-->
     <div class="container createStagiaire my-5 card pb-3">
 
-    <?php
-    if (isset($_GET['error'])) {
-        if ($_GET['error'] == "stmtfailed") {
-            echo '<p class="text-danger text-center error-message pt-2 pb-2">Something went wrong. Please try again.</p>';
+        <?php
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == "stmtfailed") {
+                echo '<p class="text-danger text-center error-message pt-2 pb-2">Something went wrong. Please try again.</p>';
+            }
         }
-    }
 
-    // Get ID Stagiaire
-    $Id = $_GET['Id'];
+        // Get ID Stagiaire
+        $Id = $_GET['Id'];
 
-    // declaration Stagire and Gestion 
-    include "../Gestions/gestion_Stagiaire.php";
-    // include_once "../entity/stagiaire.php";
-    
-    // get One Stagiaire
-    // $dataStage = new Stagiaire();    
-    $GestionDataStagiaire = new GestionStagiaire();    
-    $stagiaireData = $GestionDataStagiaire->getOneStagiaire($Id);
-    // print_r($stagiaireData);
+        // declaration Stagire and Gestion 
+        include "../Gestions/gestion_Stagiaire.php";
 
-    // Access the retrieved data
-    $id = $stagiaireData[0]->getId();
-    $nom = $stagiaireData[0]->getNom();
-    $cne = $stagiaireData[0]->getCNE();
-    $VlleNom = $stagiaireData[0]->getVilleNom();
-    echo "<pre>";
-        print_r($stagiaireData);
-    echo "</pre>";
-    echo $VlleNom;
+        // get One Stagiaire
+        $GestionDataStagiaire = new GestionStagiaire();
+        $stagiaireData = $GestionDataStagiaire->getOneStagiaire($Id);
 
-    ?>
+        // Access the retrieved data
+        $id = $stagiaireData[0]->getId();
+        $nom = $stagiaireData[0]->getNom();
+        $cne = $stagiaireData[0]->getCNE();
+        $Ville_Id = $stagiaireData[0]->getVille_Id();
+        ?>
 
-        <h1>Add Personne</h1>
+        <h1>EIDT PERSON</h1>
         <form action="../entity/update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
-        
+
             <div class="form-group">
                 <label for="nom">Nom*:</label>
                 <input type="text" class="form-control" id="nom" value="<?php echo $nom; ?>" name="nom" required>
@@ -92,24 +85,21 @@
                     <option value="Stagiaire">Stagiaire</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="ville">Ville*:</label>
-
                 <select class="form-control" id="ville" name="ville" required>
                     <!--================== start get city in databases =====================-->
                     <?php
                     include "../Gestions/Gestion_Ville.php";
                     $getVilles = new GestionVille();
                     $villes = $getVilles->getVill();
-                    foreach ($villes as $ville) :
-                        // $selected = ($ville->getId() == $villeId) ? "selected" : "";
+                    foreach ($villes as $ville) {
+                        $selected = ($ville->getIdVille() == $Ville_Id) ? "selected" : "";
                     ?>
-                        <option value="<?php echo $ville->getIdVille(); ?>"> <?php echo $ville->getNomVille(); ?> </option>
+                        <option value="<?php echo $ville->getIdVille(); ?>" <?php echo $selected; ?>><?php echo $ville->getNomVille(); ?></option>
                     <?php
-                    endforeach;
+                    }
                     ?>
-
                     <!--================== end get city in databases =====================-->
                 </select>
             </div>

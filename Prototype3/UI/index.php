@@ -69,6 +69,8 @@
 
                     <!-- Show Stagiaire -->
                     <?php
+
+                    
                     // get Stagiaire
                     include "../Gestions/gestion_Stagiaire.php";
                     $dataStage = new GestionStagiaire();
@@ -94,7 +96,7 @@
                         <tr>
                             <td scope="row"><?php echo $stagiaire->getNom() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
-                            <td scope="row"><?php echo $stagiaire->getVilleNom() ?></td>
+                            <td scope="row"><?php echo $stagiaire->getVille_Nom() ?></td>
                             <td scope="row" class="d-flex justify-content-center gap-3">
                                 <a class="nav-link btn btn-info ml-3 text-center text-light create-stagiaire ml-3" href="./edit.Stager.php?Id=<?php echo $stagiaire->getId() ?>">EDIT</a>
                                 <!-- Button trigger modal -->

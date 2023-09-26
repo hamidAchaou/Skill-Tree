@@ -19,20 +19,15 @@ class GestionStagiaire extends Dbh {
         $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stagiairesData = [];
     
+        // set data in Array $stagiairesData;
         foreach ($stagiaires as $stagiaire) {
             $gestionStagiaire = new Stagiaire();
             $gestionStagiaire->setId($stagiaire['Id']);
             $gestionStagiaire->setNom($stagiaire['Nom']);
             $gestionStagiaire->setCne($stagiaire['CNE']);
             $gestionStagiaire->setVille_Id($stagiaire['Ville_Id']);
-            // $gestionStagiaire->setType($stagiaire['Type']);
+            $gestionStagiaire->setVille_Nom($stagiaire['VilleNom']);
             $stagiairesData[] = $gestionStagiaire;
-
-
-            $Villes = new Ville();
-            $Villes->setNomVille($stagiaire['VilleNom']);
-            $Villes->setIdVille($stagiaire['Ville_Id']);
-
         }
     
         return $stagiairesData;
@@ -58,6 +53,8 @@ class GestionStagiaire extends Dbh {
         $GestionStagire->setId($stagiaire[0]['Id']);
         $GestionStagire->setNom($stagiaire[0]['Nom']);
         $GestionStagire->setCne($stagiaire[0]['CNE']);
+        $GestionStagire->setVille_Id($stagiaire[0]['Ville_Id']);
+        // $GestionStagire->setVille_Nom($stagiaire[0]['VilleNom']);
         array_push($stagiaireData, $GestionStagire);
 
         return $stagiaireData;
@@ -81,11 +78,11 @@ class GestionStagiaire extends Dbh {
     /* ================================================================
      == // Updatee data stagiaire
     =================================================================*/
-    public function updateStagiaire($Nom, $Type, $CNE, $Id) {
-        $sql = "UPDATE personne SET Nom = ?, Type = ?, CNE = ? WHERE Id = ?";
+    public function updateStagiaire($Nom, $Type, $CNE, $VilleId, $Id) {
+        $sql = "UPDATE personne SET Nom = ?, Type = ?, CNE = ?, Ville_Id = ? WHERE Id = ?";
         $stmt = $this->connect()->prepare($sql);
     
-        if($stmt->execute([$Nom, $Type, $CNE, $Id])) {
+        if($stmt->execute([$Nom, $Type, $CNE, $VilleId,  $Id])) {
             header('Location: ../UI/index.php?UpdatePersonne=success');
             $stmt = null;
             exit();
@@ -105,6 +102,8 @@ class GestionStagiaire extends Dbh {
             // header("location: ../"); 
             $stmt = null;
             exit();
+        }else {
+            header('Location: ../UI/index.php?deleteStagiaire=success');
         }
     }
 }
