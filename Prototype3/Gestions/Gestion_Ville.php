@@ -8,7 +8,7 @@ class GestionVille extends Dbh {
     == // get Data Ville
     =============================================================*/
     public function getVill() { 
-        $stmt = $this->connect()->prepare('SELECT Id, Nom FROM ville');
+        $stmt = $this->connect()->prepare('SELECT Id, VilleNom FROM ville');
 
         if(!$stmt->execute()) {
             header("location: ../Presentation/create.Stager.php?error=cityNotfound");
@@ -22,7 +22,7 @@ class GestionVille extends Dbh {
         foreach($Vills as $Vill) {
             $gestionVill = new Ville();
             $gestionVill->setIdVille($Vill['Id']);
-            $gestionVill->setNomVille($Vill['Nom']);
+            $gestionVill->setNomVille($Vill['VilleNom']);
             array_push($dataVills, $gestionVill);
         }
 

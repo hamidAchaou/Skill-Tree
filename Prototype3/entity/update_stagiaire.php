@@ -1,5 +1,5 @@
 <?php
-include_once "../Databases/Stagiaire.php";
+include_once "../Gestions/gestion_Stagiaire.php";
 if(isset($_POST['updateStagiaire'])) {
     $Id = $_GET['Id'];
     $Type = $_POST['type'];
@@ -7,7 +7,7 @@ if(isset($_POST['updateStagiaire'])) {
     $CNE = $_POST['cne'];
     $Ville_Id  = $_POST['ville'];
 
-    echo $Id;
+    // echo $Id;
     // echo $Type;
     // echo $Nom;
     // echo $CNE;
@@ -19,7 +19,7 @@ if(isset($_POST['updateStagiaire'])) {
         die("Please fill in all required fields.");
     }
 
-    // $AddStagiare = new Stagiaire();
-    // $AddStagiare->addStagiaire($Nom, $Type, $CNE, $Ville_Id);
+    $AddStagiare = new GestionStagiaire();
+    $AddStagiare->updateStagiaire($Nom, $Type, $CNE, $Ville_Id);
 
 }

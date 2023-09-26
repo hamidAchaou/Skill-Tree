@@ -1,13 +1,15 @@
 <?php
-include '../Gestions/dbh.php';
+include_once '../Gestions/dbh.php';
 include_once  '../entity/stagiaire.php';   
 include_once  '../entity/ville.php';   
 
 class GestionStagiaire extends Dbh {
 
-    // get Data Stagiaire
+    /* ================================================================
+     == // Connect Databases
+    =================================================================*/
     public function getStagiaires() {
-        $stmt = $this->connect()->prepare("SELECT personne.Id, personne.Nom, personne.Type, personne.CNE, ville.VilleNom, ville.Id AS Ville FROM personne JOIN ville ON personne.Ville_Id = ville.Id;");
+        $stmt = $this->connect()->prepare("SELECT personne.Id, personne.Nom, personne.Type, personne.CNE, personne.Ville_Id, ville.VilleNom, ville.Id AS Ville FROM personne JOIN ville ON personne.Ville_Id = ville.Id;");
         
         if (!$stmt->execute()) {
             // Handle the error or log it
@@ -22,7 +24,7 @@ class GestionStagiaire extends Dbh {
             $gestionStagiaire->setId($stagiaire['Id']);
             $gestionStagiaire->setNom($stagiaire['Nom']);
             $gestionStagiaire->setCne($stagiaire['CNE']);
-            // $gestionStagiaire->setVille_Id($stagiaire['Ville_Id']);
+            $gestionStagiaire->setVille_Id($stagiaire['Ville_Id']);
             // $gestionStagiaire->setType($stagiaire['Type']);
             $stagiairesData[] = $gestionStagiaire;
 
@@ -36,7 +38,10 @@ class GestionStagiaire extends Dbh {
         return $stagiairesData;
     }
 
-    // Get One Stagiaire
+    /* ================================================================
+     == // Get One Stagiaire
+    =================================================================*/
+    
     public function getOneStagiaire($Id) {
         $stmt = $this->connect()->prepare('SELECT * FROM personne WHERE Id = ?');
         if(!$stmt->execute([$Id])) {
@@ -58,7 +63,9 @@ class GestionStagiaire extends Dbh {
         return $stagiaireData;
     }
 
-    // insert data stagiaire
+    /* ================================================================
+     == // Insert Data Stagiaire
+    =================================================================*/
     public function addStagiaire($Nom, $Type, $CNE, $Ville_Id) {
         $sql = "INSERT INTO personne (Nom, Type, CNE, Ville_Id) VALUES (?, ?, ?, ?)";
         $stmt = $this->connect()->prepare($sql);
@@ -74,14 +81,16 @@ class GestionStagiaire extends Dbh {
     /* ================================================================
      == // Updatee data stagiaire
     =================================================================*/
-    public function update($Nom, $CNE, $Id) {
-        $sql = "UPDATE personne SET Nom = ?, CNE = ? WHERE Id = ?";
+    public function updateStagiaire($Nom, $Type, $CNE, $Id) {
+        $sql = "UPDATE personne SET Nom = ?, Type = ?, CNE = ? WHERE Id = ?";
         $stmt = $this->connect()->prepare($sql);
     
-        if($stmt->execute([$Nom, $CNE, $Id])) {
+        if($stmt->execute([$Nom, $Type, $CNE, $Id])) {
             header('Location: ../UI/index.php?UpdatePersonne=success');
             $stmt = null;
             exit();
+        } else {
+            header('Location: ../UI/index.php?UpdateStagiaire=success');
         }
     }
 
@@ -93,12 +102,10 @@ class GestionStagiaire extends Dbh {
         $sql = "DELETE FROM personne WHERE Id = ?";
         $stmt = $this->connect()->prepare($sql);
         if($stmt->execute([$Id])) {
-            // header("location: ../");
+            // header("location: ../"); 
             $stmt = null;
             exit();
         }
-
-
     }
 }
 

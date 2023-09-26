@@ -2,19 +2,14 @@
     include_once "../entity/Stagiaire.php";
     include_once "../Gestions/Gestion_Stagiaire.php";
 
-if(isset($_POST['btn_Delete_Stagiaire'])){
-    $Id =  $_POST['id_Confirmed'];
+    if(isset($_POST['btn_Delete_Stagiaire'])){
+        $Id =  $_POST['id_Confirmed'];
 
-    $stgiaire = new Stagiaire();
+        $deleteStagiaire = new GestionStagiaire();
+        $deleteStagiaire->deleteStagiaire($Id);
 
-    $stgiaire->setId($Id);
-
-    $deleteStagiaire = new GestionStagiaire();
-
-    $deleteStagiaire->deleteStagiaire($stgiaire->getId());
-
-    header('Location: ../UI/index.php?delete=success');
-    // echo $Id;
-
-}
+        header('Location: ../UI/index.php?delete=success');
+        exit();
+    }
+?>
 ?>

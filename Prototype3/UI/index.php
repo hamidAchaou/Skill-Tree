@@ -59,7 +59,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Nom</th>
                         <th scope="col">CNE</th>
                         <th scope="col">City</th>
@@ -93,7 +92,6 @@
                     ?>
 
                         <tr>
-                            <td scope="row"><?php echo $stagiaire->getId() ?></td>
                             <td scope="row"><?php echo $stagiaire->getNom() ?></td>
                             <td scope="row"><?php echo $stagiaire->getCNE() ?></td>
                             <td scope="row"><?php echo $stagiaire->getVilleNom() ?></td>

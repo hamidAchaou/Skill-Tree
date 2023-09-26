@@ -72,8 +72,8 @@
     ?>
 
         <h1>Add Personne</h1>
-        <form action="./update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
-
+        <form action="../entity/update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
+        
             <div class="form-group">
                 <label for="nom">Nom*:</label>
                 <input type="text" class="form-control" id="nom" value="<?php echo $nom; ?>" name="nom" required>
@@ -103,9 +103,9 @@
                     $getVilles = new GestionVille();
                     $villes = $getVilles->getVill();
                     foreach ($villes as $ville) :
-                        $selected = ($ville->getId() == $villeId) ? "selected" : "";
+                        // $selected = ($ville->getId() == $villeId) ? "selected" : "";
                     ?>
-                        <option value="<?php echo $ville->getIdVille(); ?>"><?php echo $ville->getNomVille(); ?></option>
+                        <option value="<?php echo $ville->getIdVille(); ?>"> <?php echo $ville->getNomVille(); ?> </option>
                     <?php
                     endforeach;
                     ?>

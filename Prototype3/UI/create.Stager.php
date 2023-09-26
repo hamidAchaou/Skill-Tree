@@ -75,13 +75,14 @@
                     include "../Gestions/Gestion_Ville.php";
                     $getVilles = new GestionVille();
                     $villes = $getVilles->getVill();
-                    // print_r($ville);
                     foreach ($villes as $ville) :
+                        // $selected = ($ville->getId() == $villeId) ? "selected" : "";
                     ?>
-                        <option value="<?php echo $ville->getId() ?>"><?php echo $ville->getNom() ?></option>
+                        <option value="<?php echo $ville->getIdVille(); ?>"> <?php echo $ville->getNomVille(); ?> </option>
                     <?php
                     endforeach;
                     ?>
+
                     <!--================== end get city in databases =====================-->
                 </select>
             </div>
