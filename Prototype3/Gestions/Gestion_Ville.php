@@ -1,10 +1,12 @@
 <?php
-include "../entity/ville.php";
-include "../Gestions/dbh.php";
+include_once "../entity/ville.php";
+include_once "../Gestions/dbh.php";
 
 class GestionVille extends Dbh {
 
-    // get Data Ville
+    /*=============================================================
+    == // get Data Ville
+    =============================================================*/
     public function getVill() { 
         $stmt = $this->connect()->prepare('SELECT Id, Nom FROM ville');
 
@@ -19,8 +21,8 @@ class GestionVille extends Dbh {
 
         foreach($Vills as $Vill) {
             $gestionVill = new Ville();
-            $gestionVill->setId($Vill['Id']);
-            $gestionVill->setNom($Vill['Nom']);
+            $gestionVill->setIdVille($Vill['Id']);
+            $gestionVill->setNomVille($Vill['Nom']);
             array_push($dataVills, $gestionVill);
         }
 

@@ -139,18 +139,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this stagiaire?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="deleteStagiaire()">Delete</button>
-                </div>
+                <form action="../entity/deleteStagiaire.php" method="POST">
+                    <input type="hidden" id='confirm_Delete' name="id_Confirmed">
+                    <div class="modal-body">
+                        Are you sure you want to delete this stagiaire?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger" name='btn_Delete_Stagiaire'>Delete</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
     <!-- =========================== END Delete Modal ==================== -->
-
 
     <!-- Link Bootstrap 4 JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -158,7 +161,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Custom JavaScript -->
-    <script src="./asset/script.js"></script>
+    <script src="./asset/js/main.js"></script>
 
 </body>
 

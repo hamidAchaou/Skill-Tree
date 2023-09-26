@@ -1,15 +1,13 @@
 <?php
 include '../Gestions/dbh.php';
 include_once  '../entity/stagiaire.php';   
+include_once  '../entity/ville.php';   
 
 class GestionStagiaire extends Dbh {
 
     // get Data Stagiaire
     public function getStagiaires() {
-        $stmt = $this->connect()->prepare("SELECT personne.Id, personne.Nom, personne.CNE, ville.Nom AS VilleNom
-            FROM personne
-            INNER JOIN ville ON personne.Ville_Id = ville.Id 
-            WHERE personne.Type = 'Stagiaire'");
+        $stmt = $this->connect()->prepare("SELECT personne.Id, personne.Nom, personne.Type, personne.CNE, ville.VilleNom, ville.Id AS Ville FROM personne JOIN ville ON personne.Ville_Id = ville.Id;");
         
         if (!$stmt->execute()) {
             // Handle the error or log it
@@ -24,8 +22,15 @@ class GestionStagiaire extends Dbh {
             $gestionStagiaire->setId($stagiaire['Id']);
             $gestionStagiaire->setNom($stagiaire['Nom']);
             $gestionStagiaire->setCne($stagiaire['CNE']);
-            $gestionStagiaire->setVilleNom($stagiaire['VilleNom']);
+            // $gestionStagiaire->setVille_Id($stagiaire['Ville_Id']);
+            // $gestionStagiaire->setType($stagiaire['Type']);
             $stagiairesData[] = $gestionStagiaire;
+
+
+            $Villes = new Ville();
+            $Villes->setNomVille($stagiaire['VilleNom']);
+            $Villes->setIdVille($stagiaire['Ville_Id']);
+
         }
     
         return $stagiairesData;
@@ -66,9 +71,34 @@ class GestionStagiaire extends Dbh {
         }
     }
 
-    // Update Stagiaire
-    public function update() {
-        $sql = "UPDATE ";
+    /* ================================================================
+     == // Updatee data stagiaire
+    =================================================================*/
+    public function update($Nom, $CNE, $Id) {
+        $sql = "UPDATE personne SET Nom = ?, CNE = ? WHERE Id = ?";
+        $stmt = $this->connect()->prepare($sql);
+    
+        if($stmt->execute([$Nom, $CNE, $Id])) {
+            header('Location: ../UI/index.php?UpdatePersonne=success');
+            $stmt = null;
+            exit();
+        }
+    }
+
+    /* ================================================================
+     == // Delte Stagiaire
+    =================================================================*/
+    public function deleteStagiaire($Id) {
+        // $Id = $stgiaire->getId();
+        $sql = "DELETE FROM personne WHERE Id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        if($stmt->execute([$Id])) {
+            // header("location: ../");
+            $stmt = null;
+            exit();
+        }
+
+
     }
 }
 

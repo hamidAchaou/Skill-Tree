@@ -51,17 +51,23 @@
 
     // declaration Stagire and Gestion 
     include "../Gestions/gestion_Stagiaire.php";
-    include_once "../entity/stagiaire.php";
+    // include_once "../entity/stagiaire.php";
     
     // get One Stagiaire
-    $dataStage = new Stagiaire();    
-    $dataStage = new GestionStagiaire();    
-    $stagiaireData = $dataStage->getOneStagiaire($Id);
+    // $dataStage = new Stagiaire();    
+    $GestionDataStagiaire = new GestionStagiaire();    
+    $stagiaireData = $GestionDataStagiaire->getOneStagiaire($Id);
+    // print_r($stagiaireData);
 
     // Access the retrieved data
     $id = $stagiaireData[0]->getId();
     $nom = $stagiaireData[0]->getNom();
     $cne = $stagiaireData[0]->getCNE();
+    $VlleNom = $stagiaireData[0]->getVilleNom();
+    echo "<pre>";
+        print_r($stagiaireData);
+    echo "</pre>";
+    echo $VlleNom;
 
     ?>
 
@@ -96,11 +102,10 @@
                     include "../Gestions/Gestion_Ville.php";
                     $getVilles = new GestionVille();
                     $villes = $getVilles->getVill();
-                    // print_r($ville);
                     foreach ($villes as $ville) :
                         $selected = ($ville->getId() == $villeId) ? "selected" : "";
                     ?>
-                        <option value="<?php echo $ville->getId(); ?>" <?php echo $selected; ?>><?php echo $ville->getNom(); ?></option>
+                        <option value="<?php echo $ville->getIdVille(); ?>"><?php echo $ville->getNomVille(); ?></option>
                     <?php
                     endforeach;
                     ?>

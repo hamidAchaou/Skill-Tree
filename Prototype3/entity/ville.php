@@ -3,19 +3,19 @@ class Ville {
     private $Id;
     private $Nom;
 
-    public function setId($Id) {
+    public function setIdVille($Id) {
         $this->Id = $Id;
     }
 
-    public function getId() {
+    public function getIdVille() {
         return $this->Id;
     }
 
-    public function setNom($Non) {
+    public function setNomVille($Non) {
         $this->Nom = $Non;
     }
 
-    public function getNom() {
+    public function getNomVille() {
         return $this->Nom;
     }
 }
