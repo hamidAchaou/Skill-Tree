@@ -38,7 +38,8 @@
 
 
     <main>
-        <div class="container mt-5">
+        <!--  table stagiaire -->
+        <section class="container mt-5">
             <!-- <h1 class="text-center title">Stagiaire Management</h1> -->
 
             <?php
@@ -70,7 +71,7 @@
                     <!-- Show Stagiaire -->
                     <?php
 
-                    
+
                     // get Stagiaire
                     include "../Gestions/gestion_Stagiaire.php";
                     $dataStage = new GestionStagiaire();
@@ -115,17 +116,41 @@
             <!-- Pagination -->
             <?php
             ?>
-            <div class="pagination">
+            <div class="pagination justify-content-center">
                 <ul class="pagination justify-content-center">
                     <?php
                     // Display pagination links
                     for ($i = 1; $i <= $totalPages; $i++) {
-                        echo '<li class="page-item ' . ($i == $currentPage ? 'active' : '') . '"><a class="page-link" href="./index.php?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li class="page-item ' . ($i == $currentPage ? 'active' : '') . '">
+                            <a class="page-link" href="./index.php?page=' . $i . '">' . $i . '</a>
+                        </li>';
                     }
                     ?>
                 </ul>
             </div>
-        </div>
+        </section>
+
+        <!--  chart -->
+        <section class="container">
+            <?php
+            include "../Gestions/Gestion_Ville.php";
+            $getVilles = new GestionVille();
+            $villes = $getVilles->getVill();
+                $dataCity = [];
+                foreach($villes as $ville) {
+                    $City = $ville->getNomVille();
+                    array_push($dataCity, $City); 
+                }
+                echo"<pre>";
+                print_r($dataCity);
+                echo"</pre>";
+
+            ?>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </section>
     </main>
 
 
@@ -162,6 +187,11 @@
 
     <!-- Custom JavaScript -->
     <script src="./asset/js/main.js"></script>
+
+    <!-- link chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="./asset/js/chart.js"></script>
 
 </body>
 

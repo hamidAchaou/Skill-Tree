@@ -106,6 +106,18 @@ class GestionStagiaire extends Dbh {
             header('Location: ../UI/index.php?deleteStagiaire=success');
         }
     }
+
+    // get count ville
+    public function countTrainner(){
+        $sql ="SELECT ville.Id, ville.Nom AS VilleNom, COUNT(personne.Id) AS TrainerCount
+        FROM personne
+        INNER JOIN ville ON personne.Ville_Id = ville.Id
+        GROUP BY ville.Id, ville.Nom;";
+        $stm = $this->connect()->prepare($sql);
+        $stm->execute();
+        $count = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $count;
+    }
 }
 
 
