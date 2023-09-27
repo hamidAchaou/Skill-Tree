@@ -133,23 +133,52 @@
         <!--  chart -->
         <section class="container">
             <?php
-            include "../Gestions/Gestion_Ville.php";
-            $getVilles = new GestionVille();
-            $villes = $getVilles->getVill();
-                $dataCity = [];
-                foreach($villes as $ville) {
-                    $City = $ville->getNomVille();
-                    array_push($dataCity, $City); 
-                }
+            // include "../Gestions/gestion_Stagiaire.php";
+            $getVilles = new GestionStagiaire();
+            $villes = $getVilles->countTrainner();
+            $jsonData = json_encode($villes);
+
                 echo"<pre>";
-                print_r($dataCity);
+                print_r($villes);
                 echo"</pre>";
 
             ?>
             <div>
                 <canvas id="myChart"></canvas>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+            <script>
+                var jsonData = <?php echo $jsonData; ?>;
+
+                // console.log(jsonData);
+                const ctx = document.getElementById('myChart');
+                city = []
+                personCount = []
+                for(let i= 0; i< jsonData.length; i++) {
+                    city.push(jsonData[i]['VilleNom']);
+                    personCount.push(jsonData[i]['TrainerCount']);
+                }
+                console.log(city,personCount)
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                    labels: city,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: personCount,
+                        borderWidth: 1
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true
+                        }
+                    }
+                    }
+                });
+            </script>
         </section>
     </main>
 
@@ -189,9 +218,8 @@
     <script src="./asset/js/main.js"></script>
 
     <!-- link chart JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <script src="./asset/js/chart.js"></script>
+    <!-- <script src="./asset/js/chart.js"></script> -->
 
 </body>
 

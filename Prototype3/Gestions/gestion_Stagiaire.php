@@ -107,12 +107,14 @@ class GestionStagiaire extends Dbh {
         }
     }
 
-    // get count ville
+    /*=======================================================================================
+    == // get count ville
+    =======================================================================================*/
     public function countTrainner(){
-        $sql ="SELECT ville.Id, ville.Nom AS VilleNom, COUNT(personne.Id) AS TrainerCount
+        $sql ="SELECT ville.Id, ville.VilleNom AS VilleNom, COUNT(personne.Id) AS TrainerCount
         FROM personne
         INNER JOIN ville ON personne.Ville_Id = ville.Id
-        GROUP BY ville.Id, ville.Nom;";
+        GROUP BY ville.Id, ville.VilleNom;";
         $stm = $this->connect()->prepare($sql);
         $stm->execute();
         $count = $stm->fetchAll(PDO::FETCH_ASSOC);
