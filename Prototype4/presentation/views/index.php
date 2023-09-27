@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./asset/style.css">
+    <link rel="stylesheet" href="../asset/css/style.css">
 
     <title>affichage des stagiaire</title>
 </head>
@@ -73,7 +73,7 @@
 
 
                     // get Stagiaire
-                    include "../../data_storage/gestion_Stagiaire.php";
+                    include_once "../../data_storage/gestion_Stagiaire.php";
                     $dataStage = new GestionStagiaire();
                     $stagiaireInfo = $dataStage->getStagiaires();
 
@@ -130,24 +130,52 @@
             </div>
         </section>
 
-        <!--  chart -->
+        <!-- display chart -->
         <section class="container">
+            <h1 class="text-center">Number of people in each city</h1>
             <?php
-            include "../../data_storage/Gestion_Ville.php";
-            $getVilles = new GestionVille();
-            $villes = $getVilles->getVill();
-                $dataCity = [];
-                foreach($villes as $ville) {
-                    $City = $ville->getNomVille();
-                    array_push($dataCity, $City); 
-                }
-
+            // include "../Gestions/gestion_Stagiaire.php";
+            $getVilles = new GestionStagiaire();
+            $villes = $getVilles->countTrainner();
+            $jsonData = json_encode($villes);
 
             ?>
             <div>
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" class="pt-5"></canvas>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+            <script>
+                var jsonData = <?php echo $jsonData; ?>;
+
+                // console.log(jsonData);
+                const ctx = document.getElementById('myChart');
+                city = []
+                personCount = []
+                for(let i= 0; i< jsonData.length; i++) {
+                    city.push(jsonData[i]['VilleNom']);
+                    personCount.push(jsonData[i]['TrainerCount']);
+                }
+                console.log(city,personCount)
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                    labels: city,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: personCount,
+                        borderWidth: 1
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true
+                        }
+                    }
+                    }
+                });
+            </script>
         </section>
     </main>
 

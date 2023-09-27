@@ -1,6 +1,6 @@
 <?php
-include_once "../entity/ville.php";
-include_once "../Gestions/dbh.php";
+include_once "dbh.php";
+include __DIR__ . "/../business_logic/ville.php";
 
 class GestionVille extends Dbh {
 

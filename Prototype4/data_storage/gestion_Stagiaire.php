@@ -1,9 +1,6 @@
 <?php
-// require_once __DIR__ . '/dbh.php';
-// include "../data_storage/";
-// include_once __DIR__ . '/../business_logic/stagiaire.php';
-// include_once __DIR__ .  '/../business_logic/ville.php';   
-
+include "dbh.php";
+include __DIR__ . "/../business_logic/stagiaire.php";
 class GestionStagiaire extends Dbh {
 
     /* ================================================================
@@ -13,7 +10,7 @@ class GestionStagiaire extends Dbh {
         $stmt = $this->connect()->prepare("SELECT personne.Id, personne.Nom, personne.Type, personne.CNE, personne.Ville_Id, ville.VilleNom, ville.Id AS Ville FROM personne JOIN ville ON personne.Ville_Id = ville.Id;");
         
         if (!$stmt->execute()) {
-            // Handle the error or log it
+            header("location: ../presentation/views/index.php?stmt=failde");
             return [];
         }
     
@@ -41,7 +38,7 @@ class GestionStagiaire extends Dbh {
     public function getOneStagiaire($Id) {
         $stmt = $this->connect()->prepare('SELECT * FROM personne WHERE Id = ?');
         if(!$stmt->execute([$Id])) {
-            header("location: ../Application/Gestion_Stagiaire.php");
+            header("location: ../presentation/views/index.php?stmt=failde");
             $stmt = null;
             exit();
         }
@@ -49,7 +46,7 @@ class GestionStagiaire extends Dbh {
         $stagiaire = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stagiaireData = [];
 
-        include_once "../entity/stagiaire.php";
+        // include_once "../entity/stagiaire.php";
         $GestionStagire = new Stagiaire();
         $GestionStagire->setId($stagiaire[0]['Id']);
         $GestionStagire->setNom($stagiaire[0]['Nom']);
@@ -62,7 +59,7 @@ class GestionStagiaire extends Dbh {
     }
 
     /* ================================================================
-     == // Insert Data Stagiaire
+     == // ADD Data Stagiaire
     =================================================================*/
     public function addStagiaire($Nom, $Type, $CNE, $Ville_Id) {
         $sql = "INSERT INTO personne (Nom, Type, CNE, Ville_Id) VALUES (?, ?, ?, ?)";
@@ -72,7 +69,7 @@ class GestionStagiaire extends Dbh {
             header('Location: ../UI/create.Stager.php?error=failde');
             exit();
         } else {
-            header('Location: ../UI/index.php?addPersonne=success');
+            header('Location: ../views/index.php?addPersonne=success');
         }
     }
 
@@ -84,11 +81,11 @@ class GestionStagiaire extends Dbh {
         $stmt = $this->connect()->prepare($sql);
     
         if($stmt->execute([$Nom, $Type, $CNE, $VilleId,  $Id])) {
-            header('Location: ../UI/index.php?UpdatePersonne=success');
+            header('Location: ../views/index.php?UpdatePersonne=success');
             $stmt = null;
             exit();
         } else {
-            header('Location: ../UI/index.php?UpdateStagiaire=success');
+            header('Location: ../views/index.php?UpdateStagiaire=success');
         }
     }
 
@@ -104,22 +101,23 @@ class GestionStagiaire extends Dbh {
             $stmt = null;
             exit();
         }else {
-            header('Location: ../UI/index.php?deleteStagiaire=success');
+            header('Location: ../views/index.php?deleteStagiaire=success');
         }
     }
 
-    // get count ville
+    /*=======================================================================================
+    == // get count ville
+    =======================================================================================*/
     public function countTrainner(){
-        $sql ="SELECT ville.Id, ville.Nom AS VilleNom, COUNT(personne.Id) AS TrainerCount
+        $sql ="SELECT ville.Id, ville.VilleNom AS VilleNom, COUNT(personne.Id) AS TrainerCount
         FROM personne
         INNER JOIN ville ON personne.Ville_Id = ville.Id
-        GROUP BY ville.Id, ville.Nom;";
+        GROUP BY ville.Id, ville.VilleNom;";
         $stm = $this->connect()->prepare($sql);
         $stm->execute();
         $count = $stm->fetchAll(PDO::FETCH_ASSOC);
         return $count;
     }
 }
-
 
 ?>

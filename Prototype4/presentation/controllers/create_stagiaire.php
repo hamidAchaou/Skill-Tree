@@ -1,6 +1,6 @@
 <?php
-include_once "../Gestions/gestion_Stagiaire.php";
-include_once "../entity/stagiaire.php";
+include_once "../../data_storage/gestion_Stagiaire.php";
+include_once "../../business_logic/stagiaire.php";
 if(isset($_POST['createStagiaire'])) {
     $Nom = $_POST['nom'];
     $Type = $_POST['type'];

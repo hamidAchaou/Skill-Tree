@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- style CSS -->
-    <link rel="stylesheet" href="./asset/style.css">
+    <link rel="stylesheet" href="../asset/css/style.css">
 
     <title>Create des stagiaire</title>
 </head>
@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../UI/index.php">Stagiaire</a>
+                        <a class="nav-link" href="../views/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../UI/create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link" href="../views/create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +51,7 @@
         $Id = $_GET['Id'];
 
         // declaration Stagire and Gestion 
-        include "../Gestions/gestion_Stagiaire.php";
+        include "../../data_storage/gestion_Stagiaire.php";
 
         // get One Stagiaire
         $GestionDataStagiaire = new GestionStagiaire();
@@ -65,7 +65,7 @@
         ?>
 
         <h1>EIDT PERSON</h1>
-        <form action="../entity/update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
+        <form action="../controllers/update_stagiaire.php?Id=<?php echo $_GET['Id'] ?>" method="POST">
 
             <div class="form-group">
                 <label for="nom">Nom*:</label>
@@ -90,7 +90,8 @@
                 <select class="form-control" id="ville" name="ville" required>
                     <!--================== start get city in databases =====================-->
                     <?php
-                    include "../Gestions/Gestion_Ville.php";
+                    include_once  "../../data_storage/Gestion_Ville.php";
+
                     $getVilles = new GestionVille();
                     $villes = $getVilles->getVill();
                     foreach ($villes as $ville) {

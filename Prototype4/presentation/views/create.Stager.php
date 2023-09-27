@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- style CSS -->
-    <link rel="stylesheet" href="./asset//style.css">
+    <link rel="stylesheet" href="../asset/css/style.css">
 
     <title>Create des stagiaire</title>
 </head>
@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../UI/index.php">Stagiaire</a>
+                        <a class="nav-link" href="../views/index.php">Stagiaire</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link btn btn-success text-light create-stagiaire" href="./create.Stager.php">Create Stagiaire</a>
+                        <a class="nav-link btn btn-success text-light create-stagiaire" href="../views/create.Stager.php">Create Stagiaire</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +47,7 @@
     ?>
 
         <h1>Add Personne</h1>
-        <form action="../entity/create_stagiaire.php" method="POST">
+        <form action="../controllers/create_stagiaire.php" method="POST">
             <div class="form-group">
                 <label for="nom">Nom*:</label>
                 <input type="text" class="form-control" id="nom" name="nom" required>
@@ -72,7 +72,7 @@
                 <select class="form-control" id="ville" name="ville" required>
                     <!--================== start get city in databases =====================-->
                     <?php
-                    include "../Gestions/Gestion_Ville.php";
+                    include "../../data_storage/Gestion_Ville.php";
                     $getVilles = new GestionVille();
                     $villes = $getVilles->getVill();
                     foreach ($villes as $ville) :

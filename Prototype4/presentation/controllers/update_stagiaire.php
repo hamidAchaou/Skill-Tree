@@ -1,5 +1,5 @@
 <?php
-include_once "../Gestions/gestion_Stagiaire.php";
+include_once "../../data_storage/gestion_Stagiaire.php";
 if(isset($_POST['updateStagiaire'])) {
     // get data input
     $Id = $_GET['Id'];

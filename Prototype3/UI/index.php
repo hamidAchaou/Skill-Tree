@@ -137,11 +137,6 @@
             $getVilles = new GestionStagiaire();
             $villes = $getVilles->countTrainner();
             $jsonData = json_encode($villes);
-
-                echo"<pre>";
-                print_r($villes);
-                echo"</pre>";
-
             ?>
             <div>
                 <canvas id="myChart"></canvas>
