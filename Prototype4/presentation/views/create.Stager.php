@@ -15,26 +15,9 @@
 </head>
 <body>
 
-    <!-- =========================== start NavBar ==================== -->
-    <nav class="navbar navbar-expand-md navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Stagiaire Management</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../views/index.php">Stagiaire</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-success text-light create-stagiaire" href="../views/create.Stager.php">Create Stagiaire</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- =========================== END NavBar ==================== -->
+   <!-- include navbar -->
+   <?php include '../../business_logic/navbar.php'; ?>
+   
     <!-- =============== Form Add Stagers ===================-->
     <div class="container createStagiaire my-5 card pb-3">
 
