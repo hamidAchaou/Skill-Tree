@@ -171,7 +171,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="../entity/deleteStagiaire.php" method="POST">
+                <form action="../controllers/deleteStagiaire.php" method="POST">
                     <input type="hidden" id='confirm_Delete' name="id_Confirmed">
                     <div class="modal-body">
                         Are you sure you want to delete this stagiaire?
