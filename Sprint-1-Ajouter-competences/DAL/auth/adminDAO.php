@@ -24,12 +24,6 @@ include_once "../../loader.php";
         
         $checkPass = password_verify($password, $loginData[0]["Password"]);
     
-        echo $checkPass;
-        // echo $password;
-        // echo $loginData[0]["Password"];
-        // $hashedpass = password_hash($password, PASSWORD_DEFAULT);
-        // echo $hashedpass;
-    
 
           if ($checkPass == false) {
       

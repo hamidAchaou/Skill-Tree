@@ -8,13 +8,10 @@ if (isset($_POST['loginSubmit'])) {
 
     $admin = new Admin();
     $infoAdmin = [];
-    $infoAdmin['email'] = $admin->setEmail($email); // Make sure setEmail() returns the email value
+    $infoAdmin['email'] = $admin->setEmail($email);
     $infoAdmin['password'] = $admin->setPassword($pass);
-    // print_r($infoAdmin);
-    // echo $admin->getEmail(); // Use $admin instead of $infoAdmin
-    // echo $admin->getPassword(); // Use $admin instead of $infoAdmin
 
-    $loginBLO = new LoginBLO($admin);
-    $loginBLO->loginAdmin();
+    $loginBLO = new CompetenceBLO();
+    $loginBLO->AddCompetence($infoAdmin);
 }
 ?>

@@ -20,7 +20,7 @@
             </ul>
         </nav>
             <!-- Sidebar -->
-            <?php include_once "./layouts/Sidebar.php" ?>
+            <?php include_once "../Presentation/layouts/Sidebar.php" ?>
 
         <!-- Content Wrapper -->
         <div class="content-wrapper">
@@ -39,24 +39,20 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="./ajouter-competences.inc.php" method="post">
                                 <div class="mb-3">
                                     <label for="code" class="form-label">Code</label>
-                                    <input type="text" class="form-control" id="code" placeholder="Enter code">
+                                    <input type="text" class="form-control" id="code" name="code" placeholder="Enter code">
                                 </div>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Enter name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="reference" class="form-label">Reference</label>
-                                    <input type="text" class="form-control" id="reference" placeholder="Enter reference">
+                                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add Skill</button>
+                                <button type="submit" name="ajouterCompetences" class="btn btn-primary">Ajouter Competences</button>
                             </form>
                         </div>
                     </div>
