@@ -1,6 +1,7 @@
 <!-- cheack Login -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -9,41 +10,55 @@
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 </head>
+
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-          <!-- <img src="../asset/images/logo.png" alt="Logo" class="" style="width: 60px;"> -->
+            <!-- <img src="../asset/images/logo.png" alt="Logo" class="" style="width: 60px;"> -->
         </div>
-        
+
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form action="../includec/login.inc.php" method="post">
                     <!-- flashbag -->
-        <?php
-        if (isset($_GET['error'])) {
-            if ($_GET['error'] == "emptyinput") {
-                echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
-            } elseif ($_GET['error'] == "usernotfoundEmail") {
-                echo '<div class="alert alert-danger text-center">User not found.</div>';
-            } elseif ($_GET['error'] == "worningpassword") {
-                echo '<div class="alert alert-danger text-center" role="alert">Incorrect password.</div>';
-            } elseif ($_GET['error'] == "stmtfailed") {
-                echo '<div class="alert alert-danger text-center">Something went wrong. Please try again.</div>';
-            }
-        } elseif (isset($_GET['login'])) {
-            if ($_GET['login'] == "success") {
-                echo '<div class="alert alert-success text-center">Login successful.</div>';
-            }
-        }
-        ?>
+                    <?php
+                    if (isset($_GET['error'])) {
+                        if ($_GET['error'] == "emptyinput") {
+                            echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
+                        } elseif ($_GET['error'] == "usernotfoundEmail") {
+                            echo '<div class="alert alert-danger text-center">User not found.</div>';
+                        } elseif ($_GET['error'] == "worningpassword") {
+                            echo '<div class="alert alert-danger text-center" role="alert">Incorrect password.</div>';
+                        } elseif ($_GET['error'] == "stmtfailed") {
+                            echo '<div class="alert alert-danger text-center">Something went wrong. Please try again.</div>';
+                        }
+                    } elseif (isset($_GET['login'])) {
+                        if ($_GET['login'] == "success") {
+                            echo '<div class="alert alert-success text-center">Login successful.</div>';
+                        }
+                    }
+                    ?>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Email" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <select class="form-control" name="role" id="role" required>
+                                <option value="admin">Admin <i class="fas fa-caret-down"></i></option>
+                                <option value="user">User <i class="fas fa-caret-down"></i></option>
+                            </select>
+                            <div class="input-group-text">
+                                <span class="fas fa-caret-down"></span>
+                            </div>
+                            <div class="input-group-append">
+                        </div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
@@ -75,4 +90,5 @@
     <!-- AdminLTE JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
 </body>
+
 </html>

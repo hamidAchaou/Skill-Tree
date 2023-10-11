@@ -1,4 +1,6 @@
-<?php include_once "./layouts/heade.php" ?>
+<?php include_once "./layouts/heade.php";
+// session_start();
+?>
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -7,6 +9,20 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- Right Navbar Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <img src="../Asset/images/" class="img-circle elevation-2" alt="User Image" style="width: 30px; height: 30px;">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
                 </li>
             </ul>
         </nav>

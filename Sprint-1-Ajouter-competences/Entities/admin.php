@@ -5,6 +5,7 @@ class Admin {
     private $Prenom;
     private $Email;
     private $Password;
+    private $role;
 
     public function setNom($Nom) {
         $this->Nom = $Nom;
@@ -16,6 +17,10 @@ class Admin {
 
     public function setPassword($password) {
         $this->Password = $password;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
     }
     
     public function setEmail($email) {
@@ -36,5 +41,9 @@ class Admin {
     
     public function getEmail() {
         return $this->Email;
+    }
+
+    public function getRole() {
+        return $this->role;
     }
 }

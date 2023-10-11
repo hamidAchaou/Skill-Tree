@@ -5,13 +5,16 @@ include_once "../../BLL/authBLO/loginBLO.php";
 if (isset($_POST['loginSubmit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
+    $role = $_POST['role'];
 
     $admin = new Admin();
-    $infoAdmin = [];
-    $infoAdmin['email'] = $admin->setEmail($email);
-    $infoAdmin['password'] = $admin->setPassword($pass);
+    $admin->setEmail($email);
+    $admin->setPassword($pass);
+    $admin->setRole($role);
 
-    $loginBLO = new CompetenceBLO();
-    $loginBLO->AddCompetence($infoAdmin);
+    echo $admin->getEmail();
+
+    $loginBLO = new LoginBLO($admin);
+    $loginBLO->loginAdmin();
 }
 ?>

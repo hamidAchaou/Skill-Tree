@@ -3,11 +3,13 @@ include_once "../../DAL/auth/adminDAO.php";
 class LoginBLO extends AdminDAO {
     private $email;
     private $password;
+    private $role;
 
     public function __construct($dataAdmin) {
 
         $this->email = $dataAdmin->getEmail();
         $this->password = $dataAdmin->getPassword();
+        $this->role = $dataAdmin->getRole();
     }
 
     public function loginAdmin() {
@@ -16,7 +18,7 @@ class LoginBLO extends AdminDAO {
             exit();
         }
         
-        $adminData = $this->getAdmin($this->email, $this->password);
+        $adminData = $this->getAdmin($this->email, $this->password, $this->role);
         return $adminData;
     }
 
