@@ -1,6 +1,6 @@
 <?php
-include_once "../../DAL/auth/loginAdmin.php";
-class LoginBLO extends LoginAdmin {
+include_once "../../DAL/auth/adminDAO.php";
+class LoginBLO extends AdminDAO {
     private $email;
     private $password;
 
@@ -12,7 +12,7 @@ class LoginBLO extends LoginAdmin {
 
     public function loginAdmin() {
         if ($this->emptyInput() == false) {
-            header("location: ../../Presentation/index.php?error=emptyinput");
+            header("location: ../../Presentation/ajouter-competences.php?error=emptyinput");
             exit();
         }
         
@@ -29,3 +29,4 @@ class LoginBLO extends LoginAdmin {
         }
     }
 }
+

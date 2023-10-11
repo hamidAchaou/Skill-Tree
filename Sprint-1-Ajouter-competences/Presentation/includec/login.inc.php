@@ -15,5 +15,6 @@ if (isset($_POST['loginSubmit'])) {
     // echo $admin->getPassword(); // Use $admin instead of $infoAdmin
 
     $loginBLO = new LoginBLO($admin);
+    $loginBLO->loginAdmin();
 }
 ?>

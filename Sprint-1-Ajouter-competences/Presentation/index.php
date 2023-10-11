@@ -2,7 +2,7 @@
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light position-fixed w-100" style="top: 0;">
             <!-- Left Navbar Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -19,17 +19,36 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Skills</h1>
+                            <h1 class="m-0">Compétences</h1>
                         </div>
                     </div>
+
+                    <?php
+                    if (isset($_GET['error'])) {
+                        if ($_GET['error'] == "emptyinput") {
+                            echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
+                        } elseif ($_GET['error'] == "usernotfoundEmail") {
+                            echo '<div class="alert alert-danger text-center">User not found.</div>';
+                        } elseif ($_GET['error'] == "worningpassword") {
+                            echo '<div class="alert alert-danger text-center" role="alert">Incorrect password.</div>';
+                        } elseif ($_GET['error'] == "stmtfailed") {
+                            echo '<div class="alert alert-danger text-center">Something went wrong. Please try again.</div>';
+                        }
+                    } elseif (isset($_GET['login'])) {
+                        if ($_GET['login'] == "success") {
+                            echo '<div class="alert alert-success text-center">Login successful.</div>';
+                        }
+                    }
+                    ?>
                 </div>
+            
             </div>
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Skills</h3>
+                            <h3 class="card-title">Compétences</h3>
                             <div class="card-tools">
                                 <a href="./ajouter-competences.php" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</a>
                             </div>
@@ -38,35 +57,77 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Code</th>
-                                        <th>Nom</th>
                                         <th>Référence</th>
-                                        <th>Description</th>
+                                        <th>Code</th>
+                                        <th>Name</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>SK001</td>
-                                        <td>HTML</td>
-                                        <td>REF001</td>
-                                        <td>HyperText Markup Language</td>
+                                    <td>C1</td>
+                                    <td>Maquette</td>
+                                    <td>Maquetter une application mobile</td>
                                         <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> </a>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>SK002</td>
-                                        <td>CSS</td>
-                                        <td>REF002</td>
-                                        <td>Cascading Style Sheets</td>
+                                        <td>C2</td>
+                                        <td>Base Données</td>
+                                        <td>Manipuler une base de données - perfectionnement</td>
                                         <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                    <!-- Add more rows for additional skills -->
+                                    <tr>
+                                        <td>C3</td>
+                                        <td>Base Données</td>
+                                        <td>Manipuler une base de données - perfectionnement</td>
+                                        <td>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>C4</td>
+                                        <td>gestion</td>
+                                        <td>Collaborer à la gestion d’un projet informatique et à l’organisation de<br>l’environnement de développement - perfectionnement</td>
+                                        <td>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>C5</td>
+                                        <td>Mobile native</td>
+                                        <td>Développer une application mobile native, avec Android et React Native</td>
+                                        <td>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>C6</td>
+                                        <td>tests</td>
+                                        <td>Préparer et exécuter les plans de tests d’une application</td>
+                                        <td>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>C7</td>
+                                        <td>déploiement</td>
+                                    <td>Préparer et exécuter le déploiement d’une application web et mobile - perfectionnement</td>
+                                    <td>
+                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <!-- en skills -->
                                 </tbody>
                             </table>
                         </div>

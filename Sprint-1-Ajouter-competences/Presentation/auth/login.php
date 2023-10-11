@@ -12,31 +12,32 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><img src="path/to/logo.png" alt="Logo"></a>
+          <!-- <img src="../asset/images/logo.png" alt="Logo" class="" style="width: 60px;"> -->
         </div>
+        
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form action="../includec/login.inc.php" method="post">
                     <!-- flashbag -->
-                <?php
-                    if (isset($_GET['error'])) {
-                        if ($_GET['error'] == "emptyinput") {
-                            echo '<p class="text-center error-message  pt-2 pb-2">Please fill in all fields ??</p>';
-                        } elseif ($_GET['error'] == "usernotfoundEmail") {
-                            echo '<p class="text-center error-message  pt-2 pb-2">User not found ??</p>';
-                        } elseif ($_GET['error'] == "worningpassword") {
-                            echo '<p class="text-center error-message  pt-2 pb-2">Incorrect password ??</p>';
-                        } elseif ($_GET['error'] == "stmtfailed") {
-                            echo '<p class="text-center error-message  pt-2 pb-2">Something went wrong ?? Please try again.</p>';
-                        }
-                    } elseif (isset($_GET['login'])) {
-                        if ($_GET['login'] == "success") {
-                            echo '<p class="text-success text-center success-message  pt-2 pb-2">Login successful.</p>';
-                        }
-                    }
-                    ?>
+        <?php
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == "emptyinput") {
+                echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
+            } elseif ($_GET['error'] == "usernotfoundEmail") {
+                echo '<div class="alert alert-danger text-center">User not found.</div>';
+            } elseif ($_GET['error'] == "worningpassword") {
+                echo '<div class="alert alert-danger text-center" role="alert">Incorrect password.</div>';
+            } elseif ($_GET['error'] == "stmtfailed") {
+                echo '<div class="alert alert-danger text-center">Something went wrong. Please try again.</div>';
+            }
+        } elseif (isset($_GET['login'])) {
+            if ($_GET['login'] == "success") {
+                echo '<div class="alert alert-success text-center">Login successful.</div>';
+            }
+        }
+        ?>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Email" required>
                         <div class="input-group-append">
