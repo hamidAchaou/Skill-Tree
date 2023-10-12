@@ -36,6 +36,16 @@
                         </p>
                     </a>
                 </li>
+                
+                <!-- Logout Button -->
+                <li class="nav-item">
+                    <a href="../BLL/authBLO/logoute.php" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -1,6 +1,17 @@
-<?php include_once "./layouts/heade.php";
-// session_start();
+<?php
+include_once "./layouts/heade.php";
+session_start();
+// include_once "../BLL/CompetencesBLL.php";
+include_once "../loader.php";
+
+// Check if Admin is not logged in
+if (!isset($_SESSION['Nom'])) {
+    header("Location: ./auth/login.php?login=none"); 
+    exit();
+}
+
 ?>
+
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -14,14 +25,17 @@
 
             <!-- Right Navbar Links -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><?php echo $_SESSION['Nom']; ?></a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="../Asset/images/" class="img-circle elevation-2" alt="User Image" style="width: 30px; height: 30px;">
+                        <img src="../Presentation/asset/images/logo.png" class="img-circle elevation-2" alt="User Image" style="width: 30px; height: 30px;">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item"><?php echo $_SESSION['Nom']; ?></a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Logout</a>
+                        <a href="../BLL/authBLO/logoute.php" class="dropdown-item">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -40,24 +54,11 @@
                     </div>
 
                     <?php
-                    if (isset($_GET['error'])) {
-                        if ($_GET['error'] == "emptyinput") {
-                            echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
-                        } elseif ($_GET['error'] == "usernotfoundEmail") {
-                            echo '<div class="alert alert-danger text-center">User not found.</div>';
-                        } elseif ($_GET['error'] == "worningpassword") {
-                            echo '<div class="alert alert-danger text-center" role="alert">Incorrect password.</div>';
-                        } elseif ($_GET['error'] == "stmtfailed") {
-                            echo '<div class="alert alert-danger text-center">Something went wrong. Please try again.</div>';
-                        }
-                    } elseif (isset($_GET['login'])) {
-                        if ($_GET['login'] == "success") {
-                            echo '<div class="alert alert-success text-center">Login successful.</div>';
-                        }
-                    }
+                    // get flashbag
+                    include_once "./layouts/flashbag.php";
                     ?>
                 </div>
-            
+
             </div>
             <!-- Main content -->
             <section class="content">
@@ -80,69 +81,51 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <td>C1</td>
-                                    <td>Maquette</td>
-                                    <td>Maquetter une application mobile</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>C2</td>
-                                        <td>Base Données</td>
-                                        <td>Manipuler une base de données - perfectionnement</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>C3</td>
-                                        <td>Base Données</td>
-                                        <td>Manipuler une base de données - perfectionnement</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>C4</td>
-                                        <td>gestion</td>
-                                        <td>Collaborer à la gestion d’un projet informatique et à l’organisation de<br>l’environnement de développement - perfectionnement</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>C5</td>
-                                        <td>Mobile native</td>
-                                        <td>Développer une application mobile native, avec Android et React Native</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>C6</td>
-                                        <td>tests</td>
-                                        <td>Préparer et exécuter les plans de tests d’une application</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>C7</td>
-                                        <td>déploiement</td>
-                                    <td>Préparer et exécuter le déploiement d’une application web et mobile - perfectionnement</td>
-                                    <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+
+                                    <!-- Obtenez toutes les compétences -->
+                                    <?php
+                                    $competencesBLL = new CompetenceBLO();
+                                    $competences = $competencesBLL->getAllCompetences();
+
+                                    foreach ($competences as $competence) :
+                                        $Id =  $competence->getId();
+                                        $Nom =  $competence->getNom();
+                                        $Code =  $competence->getCode();
+                                        $Reference =  $competence->getReference();
+
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $Reference ?></td>
+                                            <td><?php echo $Code ?></td>
+                                            <td><?php echo $Nom ?></td>
+                                            <td>
+                                                <a href="./edit-competences.php?Id=<?php echo $Id ?>" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
+                                                <a href="#" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </a>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Modal DElete Competences -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete competence</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h2>Ar you sur delete this competence ?</h2>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a href="./includec/delete-competence.inc.php?Id=<?php echo $Id ?>" type="button" class="btn btn-danger">DELETE</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    endforeach; //end Foreache
+                                    ?>
+
                                     <!-- en skills -->
                                 </tbody>
                             </table>
@@ -163,4 +146,5 @@
     </div>
     <!-- /.wrapper -->
 </body>
+
 </html>

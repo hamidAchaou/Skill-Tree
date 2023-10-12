@@ -1,9 +1,14 @@
 <?php
 
 class Competences {
+    private $Id;
     private $Nom;
     private $Code;
     private $Reference;
+
+    public function setId($Id) {
+        $this->Id = $Id;
+    }
 
     public function setNom($Nom) {
         $this->Nom = $Nom;
@@ -20,6 +25,10 @@ class Competences {
 
     public function getNom() {
         return $this->Nom;
+    }
+    
+    public function getId() {
+        return $this->Id;
     }
     
     public function getCode() {

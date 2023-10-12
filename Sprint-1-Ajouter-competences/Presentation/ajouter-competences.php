@@ -39,7 +39,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <form action="./ajouter-competences.inc.php" method="post">
+                            <form action="./includec/ajouter-competences.inc.php" method="post">
                                 <div class="mb-3">
                                     <label for="code" class="form-label">Code</label>
                                     <input type="text" class="form-control" id="code" name="code" placeholder="Enter code">

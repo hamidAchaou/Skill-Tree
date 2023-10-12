@@ -1,4 +1,5 @@
 <?php
+include_once "../../loader.php";
 if(isset($_POST['ajouterCompetences'])) {
     $Nom = $_POST['nom'];
     $Code = $_POST['code'];
@@ -11,14 +12,14 @@ if(isset($_POST['ajouterCompetences'])) {
         die("Please fill in all required fields.");
     }
 
-    include_once "../../loader.php";
     $admin = new Competences();
-    $infoCompetences = [];
-    $infoCompetences['Nom'] = $admin->setNom($Nom);
-    $infoCompetences['Code'] = $admin->setCode($Code);
-    $infoCompetences['Reference'] = $admin->setReference($Reference);
 
-    print_r($infoCompetences);
+    $admin->setNom($Nom);
+    $admin->setCode($Code);
+    $admin->setReference($Reference);
 
+    // print_r($infoCompetences);
 
+    $CompetenceBLO = new CompetenceBLO();
+    $AddCompetence = $CompetenceBLO->AddCompetence($admin);
 }

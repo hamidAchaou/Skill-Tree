@@ -3,4 +3,4 @@ session_start();
 session_unset();
 session_destroy();
 
-header('location: ../pages/user/homePage.php?error=none');
+header('location: ../../Presentation/auth/login.php?error=none');

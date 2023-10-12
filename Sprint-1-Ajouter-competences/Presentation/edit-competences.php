@@ -1,5 +1,8 @@
+<?php include_once "../loader.php"; ?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -8,6 +11,7 @@
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 </head>
+
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -19,8 +23,8 @@
                 </li>
             </ul>
         </nav>
-            <!-- Sidebar -->
-            <?php include_once "./layouts/Sidebar.php" ?>
+        <!-- Sidebar -->
+        <?php include_once "./layouts/Sidebar.php" ?>
         <!-- Content Wrapper -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -38,24 +42,32 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+
+                            <!-- Get competence -->
+                            <?php
+                            $Id = $_GET['Id'];
+                            $competencesBLL = new CompetenceBLO();
+                            $competence = $competencesBLL->getCompetence($Id);
+
+                            $Id = $Id;
+                            $Nom = $competence[0]->getNom();
+                            $Code = $competence[0]->getCode();
+                            $Reference = $competence[0]->getReference();
+                            ?>
+                            <form action="./includec/edit-competences.inc.php?Id=<?php echo $Id ?>" method="post">
                                 <div class="mb-3">
                                     <label for="code" class="form-label">Code</label>
-                                    <input type="text" class="form-control" id="code" placeholder="Enter code" value="SKL001">
+                                    <input type="text" class="form-control" id="code" name="code" placeholder="Enter code" value="<?php echo $Code ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter name" value="Skill 1">
+                                    <input type="text" class="form-control" id="name" name="nom" placeholder="Enter name" value="<?php echo $Nom ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="reference" class="form-label">Reference</label>
-                                    <input type="text" class="form-control" id="reference" placeholder="Enter reference" value="REF001">
+                                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference" value="<?php echo $Reference ?>">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" rows="3" placeholder="Enter description">This is skill 1.</textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Update Skill</button>
+                                <button type="submit" class="btn btn-primary" name="editCompetences">Update Skill</button>
                             </form>
                         </div>
                     </div>
@@ -74,4 +86,5 @@
     </div>
     <!-- /.wrapper -->
 </body>
+
 </html>
