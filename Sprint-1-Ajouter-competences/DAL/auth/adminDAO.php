@@ -6,7 +6,7 @@ include_once "../../loader.php";
     
 
       protected function getAdmin($email, $password, $role) {
-        $stmt = $this->connect()->prepare('SELECT * FROM user WHERE `Email` = ?');
+        $stmt = $this->connect()->prepare('SELECT * FROM person WHERE `Email` = ?');
     
         if (!$stmt->execute(array($email))) {
             $stmt = null;
@@ -33,7 +33,7 @@ include_once "../../loader.php";
           } else
           if ($checkPass == true && $role == "admin") {
             
-            $stmt = $this->connect()->prepare("SELECT * FROM user WHERE Email = ? AND Password = ?");
+            $stmt = $this->connect()->prepare("SELECT * FROM person WHERE Email = ? AND Password = ?");
       
             if (!$stmt->execute(array($email, $loginData[0]['Password']))) {
               $stmt = null;

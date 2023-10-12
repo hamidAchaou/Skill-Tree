@@ -34,8 +34,6 @@ class CompetenceBLO {
 
     // delete competence
     public function DeleteCompetence($competenceID) {
-        $affectedRows = 0;
-        $affectedRows = (int)$this->competencesDao->DeleteCompetence($competenceID);
-        return $affectedRows;
+        $this->competencesDao->DeleteCompetence($competenceID);
     }
 }

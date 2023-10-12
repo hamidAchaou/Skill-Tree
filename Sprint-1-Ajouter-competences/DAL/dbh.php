@@ -3,7 +3,7 @@ class Dbh {
     private $host = "localhost";
     private $user = "root";
     private $pwd = "";
-    private $dbName = "arbre_competence";
+    private $dbName = "gestion_competence";
 
     public function connect() {
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbName;

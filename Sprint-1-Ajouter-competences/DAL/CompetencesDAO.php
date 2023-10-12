@@ -97,10 +97,10 @@ class CompetencesDAO
     // Delete Compenent 
     public function DeleteCompetence($competenceID)
     {
-        $sql = "DELETE FROM Competences WHERE ID = ?";
+        $sql = "DELETE FROM competences WHERE ID = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$competenceID]);
    
-
+        header("location: ../index.php?success=deleteSuccess");
     }
 }

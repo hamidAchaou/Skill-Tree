@@ -7,14 +7,18 @@ if (isset($_POST['loginSubmit'])) {
     $pass = $_POST['password'];
     $role = $_POST['role'];
 
-    $admin = new Admin();
-    $admin->setEmail($email);
-    $admin->setPassword($pass);
-    $admin->setRole($role);
+    if ($role !== "admin") {
+        header("location: ../../Presentation/auth/login.php?error=worningAdmin");
+        exit();
+    } else {
+        $admin = new Admin();
+        $admin->setEmail($email);
+        $admin->setPassword($pass);
+        $admin->setRole($role);
 
-    echo $admin->getEmail();
 
-    $loginBLO = new LoginBLO($admin);
-    $loginBLO->loginAdmin();
+        $loginBLO = new LoginBLO($admin);
+        $loginBLO->loginAdmin();
+    }
 }
 ?>

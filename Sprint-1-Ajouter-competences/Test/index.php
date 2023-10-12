@@ -1,5 +1,5 @@
 <?php
-$pass = "SoliCoders2023";
+$pass = "admin";
 $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 echo $hashedPassword;
 ?>

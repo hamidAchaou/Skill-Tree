@@ -1,6 +1,7 @@
 <?php
 include_once "../../loader.php";
 if(isset($_POST['editCompetences'])) {
+    $Id = $_GET['Id'];
     $Nom = $_POST['nom'];
     $Code = $_POST['code'];
     $Reference  = $_POST['reference'];
@@ -16,11 +17,13 @@ if(isset($_POST['editCompetences'])) {
     $competence = new Competences();
 
     $dataCompenent = [];
+    $competence->setId($Id);
     $competence->setNom($Nom);
     $competence->setCode($Code);
     $competence->setReference($Reference);
 
     $dataCompenent[] = $competence;
+    var_dump($dataCompenent);
 
     $CompetenceBLO = new CompetenceBLO();
     $AddCompetence = $CompetenceBLO->updateCompetence($dataCompenent);

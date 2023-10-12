@@ -1,12 +1,15 @@
 <?php
- if (isset($_GET['competenceID'])) {
-    $competenceBLO = new CompetenceBLO();
-    $id = $_GET['competenceID'];
+ if (isset($_POST['competenceID'])) {
+     $id = $_POST['id'];
+     
+     include_once "../../loader.php";
+     $competenceBLO = new CompetenceBLO();
 
+     
     $competenceBLO->DeleteCompetence($id);
 
-    header('Location: index.php');
-    exit; 
+    // header('Location: index.php');
+    // exit; 
 }
 
 ?>

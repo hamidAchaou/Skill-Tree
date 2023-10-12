@@ -6,7 +6,7 @@ include_once "../loader.php";
 
 // Check if Admin is not logged in
 if (!isset($_SESSION['Nom'])) {
-    header("Location: ./auth/login.php?login=none"); 
+    header("Location: ./auth/login.php?login=none");
     exit();
 }
 
@@ -100,28 +100,10 @@ if (!isset($_SESSION['Nom'])) {
                                             <td><?php echo $Nom ?></td>
                                             <td>
                                                 <a href="./edit-competences.php?Id=<?php echo $Id ?>" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
-                                                <a href="#" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </a>
+                                                <button onclick="setIdCompetences(<?php echo $Id ?>);" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
                                             </td>
                                         </tr>
 
-                                        <!-- Modal DElete Competences -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Delete competence</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h2>Ar you sur delete this competence ?</h2>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <a href="./includec/delete-competence.inc.php?Id=<?php echo $Id ?>" type="button" class="btn btn-danger">DELETE</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <?php
                                     endforeach; //end Foreache
                                     ?>
@@ -135,8 +117,30 @@ if (!isset($_SESSION['Nom'])) {
             </section>
             <!-- /.content -->
         </div>
+
+        <!-- Modal DElete Competences -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete competence</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Ar you sur delete this competence ?</h2>
+                    </div>
+                    <form action="./includec/delete-competence.inc.php" method="post" class="modal-footer">
+                        <input type="hidden" name="id" id="id">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button  type="submit" name="competenceID" class="btn btn-danger">DELETE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- /.content-wrapper -->
 
+        <!-- main Js -->
+        <script src="./asset/JS/main.js"></script>
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Bootstrap 5 JavaScript -->
