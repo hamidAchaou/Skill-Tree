@@ -23,7 +23,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
-                            Gestion des niveaux
+                        Gestion des niveaux
                         </p>
                     </a>
                 </li>
@@ -32,7 +32,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Gestion des stagiaires
+                        Gestion des stagiaires
                         </p>
                     </a>
                 </li>
