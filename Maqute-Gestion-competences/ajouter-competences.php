@@ -11,14 +11,7 @@
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left Navbar Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-        </nav>
+        <?php include_once "./layouts/navbar.php"?>
             <!-- Sidebar -->
             <?php include_once "./layouts/Sidebar.php" ?>
 
