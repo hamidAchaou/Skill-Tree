@@ -3,7 +3,7 @@
         if ($_GET['error'] == "emptyinput") {
             echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
         } elseif ($_GET['error'] == "usernotfoundEmail") {
-            echo '<div class="alert alert-danger text-center">User not found.</div>';
+            echo '<div class="alert alert-danger text-center">youre Emain is incorrect.</div>';
         } elseif ($_GET['error'] == "worningpassword") {
             echo '<div class="alert alert-danger text-center" role="alert">Incorrect password.</div>';
         } elseif ($_GET['error'] == "stmtfailed") {

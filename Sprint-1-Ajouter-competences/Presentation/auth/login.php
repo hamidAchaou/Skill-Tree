@@ -11,21 +11,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page bg-light">
     <div class="login-box">
         <div class="login-logo">
-            <!-- <img src="../asset/images/logo.png" alt="Logo" class="" style="width: 60px;"> -->
+            <img src="../asset/images/logo.png" alt="Logo" style="width: 60px;">
         </div>
 
-        <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <h2 class="login-box-msg">Bienvenue</h2>
                 <form action="../includec/login.inc.php" method="post">
                     <!-- flashbag -->
-                    <?php
-                        include_once "../layouts/flashbag.php";
-                    ?>
+                    <?php include_once "../layouts/flashbag.php"; ?>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Email" required>
                         <div class="input-group-append">
@@ -34,18 +31,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <select class="form-control" name="role" id="role" required>
-                                <option value="admin">Admin <i class="fas fa-caret-down"></i></option>
-                                <option value="user">User <i class="fas fa-caret-down"></i></option>
-                            </select>
-                            <div class="input-group-text">
-                                <span class="fas fa-caret-down"></span>
-                            </div>
-                            <div class="input-group-append">
-                        </div>
-                        </div>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" name="role" id="role" required>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
@@ -56,25 +46,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" name="loginSubmit" class="btn btn-primary btn-block">Sign In</button>
+                        <div class="col-12">
+                            <button type="submit" name="loginSubmit" class="btn btn-primary btn-block">Se connecter</button>
                         </div>
-                        <!-- /.col -->
                     </div>
                 </form>
             </div>
-            <!-- /.login-card-body -->
         </div>
     </div>
-    <!-- /.login-box -->
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap 5 JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
-</body>
-
+    </body>
 </html>

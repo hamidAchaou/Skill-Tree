@@ -56,7 +56,7 @@ class CompetencesDAO
         $getCompetence->setNom($competence['Nom']);
         $getCompetence->setCode($competence['Code']);
         $getCompetence->setReference($competence['Reference']);
-        $getCompetence->setDescription($competence['Reference']);
+        $getCompetence->setDescription($competence['Description']);
         
         $competenceInfo[] = $getCompetence;
         

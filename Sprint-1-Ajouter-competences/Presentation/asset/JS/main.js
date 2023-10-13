@@ -2,10 +2,11 @@ function setIdCompetences(id) {
     document.getElementById("id").value = id;
 }
 
-// add data more info in modal more info
-function setDescriptionCompetences(description) {
-    document.getElementById("modaldescription").value = description;
-}
+// function setDescriptionCompetences(description, code) {
+//     document.getElementById("modaldescription").textContent = description;
+//     document.getElementById("modalCode").textContent = code;
+// }
+
 
 // Get the form element by its ID
 const form = document.getElementById('ajouterCompetences');
@@ -55,3 +56,8 @@ form.addEventListener('submit', function (event) {
 
 
 // script rich text
+tinymce.init({
+    selector: '#inputDescription', // Use the textarea's ID
+    plugins: 'advlist autolink lists link image charmap print preview anchor',
+    toolbar_mode: 'floating',
+  });

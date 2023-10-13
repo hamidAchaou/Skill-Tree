@@ -1,8 +1,6 @@
 <?php
-include_once "./layouts/heade.php";
-session_start();
-// include_once "../BLL/CompetencesBLL.php";
-include_once "../loader.php";
+include_once "../loader.php"; // get loader links
+session_start(); // start session
 
 // Check if Admin is not logged in
 if (!isset($_SESSION['Nom'])) {
@@ -10,37 +8,14 @@ if (!isset($_SESSION['Nom'])) {
     exit();
 }
 
+include_once "./layouts/heade.php"; // get Head
 ?>
 
 <body class="sidebar-mini">
     <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light position-fixed w-100" style="top: 0;">
-            <!-- Left Navbar Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-
-            <!-- Right Navbar Links -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><?php echo $_SESSION['Nom']; ?></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="../Presentation/asset/images/logo.png" class="img-circle elevation-2" alt="User Image" style="width: 30px; height: 30px;">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item"><?php echo $_SESSION['Nom']; ?></a>
-                        <div class="dropdown-divider"></div>
-                        <a href="../BLL/authBLO/logoute.php" class="dropdown-item">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <!-- Main Sidebar Container -->
+        <!-- get Navbar -->
+        <?php include_once "./layouts/Navbar.php"; ?> 
+        <!-- get Sidebar  -->
         <?php include_once "./layouts/Sidebar.php" ?>
         <!-- Content Wrapper -->
         <div class="content-wrapper">
@@ -74,10 +49,11 @@ if (!isset($_SESSION['Nom'])) {
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Référence</th>
-                                        <th>Code</th>
+                                        <th >Référence</th>
+                                        <th >Code</th>
                                         <th>Name</th>
-                                        <th>Actions</th>
+                                        <th>Description</th>
+                                        <th style="width: 11%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,12 +75,13 @@ if (!isset($_SESSION['Nom'])) {
                                             <td><?php echo $Reference ?></td>
                                             <td><?php echo $Code ?></td>
                                             <td><?php echo $Nom ?></td>
+                                            <td><?php echo $Description ?></td>
                                             <td>
                                                 <a href="./edit-competences.php?Id=<?php echo $Id ?>" class="btn btn-primary"><i class="fas fa-edit"></i> </a>
                                                 <button onclick="setIdCompetences(<?php echo $Id ?>);" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#morInfo" onclick="setDescriptionCompetences('<?php echo $Description ?>')">                                                  <input type="text" value="<?php echo $Description; ?>">
-                                                  <i class="fas fa-info-circle"></i>
-                                                </button>
+                                                <!-- <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#morInfo" onclick="setDescriptionCompetences('<?php echo $Description ?>', '<?php echo $Code ?>')"> <input type="hidden" value="<?php echo $Description; ?>">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </button> -->
                                             </td>
                                         </tr>
 
@@ -143,36 +120,9 @@ if (!isset($_SESSION['Nom'])) {
         </div>
         <!-- /.content-wrapper -->
 
-        <!-- modal more info -->
-        <div class="modal fade" id="morInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete competence</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="modaldescription" >hh</p>
-                    </div>
-                    <form action="./includec/delete-competence.inc.php" method="post" class="modal-footer">
-                        <input type="hidden" name="id" id="id">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="competenceID" class="btn btn-danger">DELETE</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- main Js -->
-        <script src="./asset/JS/main.js"></script>
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Bootstrap 5 JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
     </div>
     <!-- /.wrapper -->
-
+     <?php include_once "./layouts/link.php" ?>                               
 </body>
 
 

@@ -5,20 +5,16 @@ if(isset($_POST['ajouterCompetences'])) {
     $Code = $_POST['code'];
     $Reference  = $_POST['reference'];
 
-
-
     // validation Input
-    if(empty($Nom || $Code || $Reference)) {
-        die("Please fill in all required fields.");
+    if(empty($Nom || $Reference)) {
+        header("location ../ajouter-competences.php?error=emptyinput");
+        // die("Please fill in all required fields.");
     }
 
     $admin = new Competences();
-
     $admin->setNom($Nom);
     $admin->setCode($Code);
     $admin->setReference($Reference);
-
-    // print_r($infoCompetences);
 
     $CompetenceBLO = new CompetenceBLO();
     $AddCompetence = $CompetenceBLO->AddCompetence($admin);

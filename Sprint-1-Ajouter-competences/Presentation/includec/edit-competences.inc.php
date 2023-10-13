@@ -10,9 +10,11 @@ if(isset($_POST['editCompetences'])) {
 
 
     // validation Input
-    if(empty($Nom || $Code || $Reference || $Description)) {
-        die("Please fill in all required fields.");
+    if(empty($Nom || $Reference)) {
+        header("location ../edit-competences.php?error=emptyinput");
+        // die("Please fill in all required fields.");
     }
+
 
     include_once "../../loader.php";
     $competence = new Competences();

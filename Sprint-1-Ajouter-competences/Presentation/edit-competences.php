@@ -1,17 +1,7 @@
-<?php include_once "../loader.php"; ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- AdminLTE CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
-</head>
-
+<?php 
+include_once "../loader.php"; // get loader links
+include_once "./layouts/heade.php"; // get Head
+?>
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -53,8 +43,12 @@
                             $Nom = $competence[0]->getNom();
                             $Code = $competence[0]->getCode();
                             $Reference = $competence[0]->getReference();
+                            $Description = $competence[0]->getDescription();
+                            
+                            include_once "./layouts/flashbag.php"; // get Flashbag
                             ?>
                             <form action="./includec/edit-competences.inc.php?Id=<?php echo $Id ?>" method="post">
+                        
                                 <div class="mb-3">
                                         <label for="reference" class="form-label">Reference</label>
                                         <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference" value="<?php echo $Reference ?>">
@@ -67,13 +61,15 @@
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="name" name="nom" placeholder="Enter name" value="<?php echo $Nom ?>">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="reference" class="form-label">Description</label>
-                                    <input type="text" class="form-control" id="description" name="description" placeholder="Entrez la description" required>
+                                <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea name="description" id="inputDescription" class="form-control" required oninvalid="this.setCustomValidity('Ajouter ce champ s\'ils vous plait')" oninput="setCustomValidity('')">
+                                    <?php echo $Description ?>
+                                    </textarea>
                                     <div id="reference-error" class="invalid-feedback"></div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary" name="editCompetences">Update Skill</button>
+                                <button type="submit" class="btn btn-primary" name="editCompetences">modifier compétence</button>
                             </form>
                         </div>
                     </div>
@@ -82,15 +78,16 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Bootstrap 5 JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
     </div>
     <!-- /.wrapper -->
+    <?php include_once "./layouts/link.php"; ?>
+    <script>
+        tinymce.init({
+    selector: '#inputDescription', // Use the textarea's ID
+    plugins: 'advlist autolink lists link image charmap print preview anchor',
+    toolbar_mode: 'floating',
+  });
+    </script>
 </body>
 
 </html>
