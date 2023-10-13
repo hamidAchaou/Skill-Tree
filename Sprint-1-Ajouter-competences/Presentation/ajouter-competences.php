@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -8,6 +9,7 @@
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 </head>
+
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -19,8 +21,8 @@
                 </li>
             </ul>
         </nav>
-            <!-- Sidebar -->
-            <?php include_once "../Presentation/layouts/Sidebar.php" ?>
+        <!-- Sidebar -->
+        <?php include_once "../Presentation/layouts/Sidebar.php" ?>
 
         <!-- Content Wrapper -->
         <div class="content-wrapper">
@@ -29,7 +31,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Add Skill</h1>
+                            <h1 class="m-0">Ajouter une compétence</h1>
                         </div>
                     </div>
                 </div>
@@ -40,19 +42,28 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="./includec/ajouter-competences.inc.php" method="post">
+                            <div class="mb-3">
+                                    <label for="reference" class="form-label">Reference</label>
+                                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Entrez la référence" required>
+                                    <div id="reference-error" class="invalid-feedback"></div>
+                                </div>
                                 <div class="mb-3">
                                     <label for="code" class="form-label">Code</label>
-                                    <input type="text" class="form-control" id="code" name="code" placeholder="Enter code">
+                                    <input type="text" class="form-control" id="code" name="code" placeholder="Entrez la code" required>
+                                    <div id="code-error" class="invalid-feedback"></div>
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Enter name">
+                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez la name" required>
+                                    <div id="nom-error" class="invalid-feedback"></div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="reference" class="form-label">Reference</label>
-                                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference">
+                                    <label for="reference" class="form-label">Description</label>
+                                    <input type="text" class="form-control" id="description" name="description" placeholder="Entrez la description" required>
+                                    <div id="reference-error" class="invalid-feedback"></div>
                                 </div>
-                                <button type="submit" name="ajouterCompetences" class="btn btn-primary">Ajouter Competences</button>
+                                <button type="submit" name="ajouterCompetences" class="btn btn-primary" id="ajouterCompetences">Ajouter Competences</button>
                             </form>
                         </div>
                     </div>
@@ -71,4 +82,5 @@
     </div>
     <!-- /.wrapper -->
 </body>
+
 </html>

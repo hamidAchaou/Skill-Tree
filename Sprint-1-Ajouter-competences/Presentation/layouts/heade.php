@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- <link rel="stylesheet" href="path/to/adminlte/css/adminlte.min.css"> -->
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->

@@ -87,20 +87,24 @@ if (!isset($_SESSION['Nom'])) {
                                     $competencesBLL = new CompetenceBLO();
                                     $competences = $competencesBLL->getAllCompetences();
 
+
                                     foreach ($competences as $competence) :
                                         $Id =  $competence->getId();
                                         $Nom =  $competence->getNom();
                                         $Code =  $competence->getCode();
                                         $Reference =  $competence->getReference();
-
+                                        $Description =  $competence->getDescription();
                                     ?>
                                         <tr>
                                             <td><?php echo $Reference ?></td>
                                             <td><?php echo $Code ?></td>
                                             <td><?php echo $Nom ?></td>
                                             <td>
-                                                <a href="./edit-competences.php?Id=<?php echo $Id ?>" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> </a>
-                                                <button onclick="setIdCompetences(<?php echo $Id ?>);" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                                <a href="./edit-competences.php?Id=<?php echo $Id ?>" class="btn btn-primary"><i class="fas fa-edit"></i> </a>
+                                                <button onclick="setIdCompetences(<?php echo $Id ?>);" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash"></i> </button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#morInfo" onclick="setDescriptionCompetences('<?php echo $Description ?>')">                                                  <input type="text" value="<?php echo $Description; ?>">
+                                                  <i class="fas fa-info-circle"></i>
+                                                </button>
                                             </td>
                                         </tr>
 
@@ -132,13 +136,32 @@ if (!isset($_SESSION['Nom'])) {
                     <form action="./includec/delete-competence.inc.php" method="post" class="modal-footer">
                         <input type="hidden" name="id" id="id">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button  type="submit" name="competenceID" class="btn btn-danger">DELETE</button>
+                        <button type="submit" name="competenceID" class="btn btn-danger">DELETE</button>
                     </form>
                 </div>
             </div>
         </div>
         <!-- /.content-wrapper -->
 
+        <!-- modal more info -->
+        <div class="modal fade" id="morInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete competence</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modaldescription" >hh</p>
+                    </div>
+                    <form action="./includec/delete-competence.inc.php" method="post" class="modal-footer">
+                        <input type="hidden" name="id" id="id">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="competenceID" class="btn btn-danger">DELETE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- main Js -->
         <script src="./asset/JS/main.js"></script>
         <!-- jQuery -->
@@ -149,6 +172,8 @@ if (!isset($_SESSION['Nom'])) {
         <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
     </div>
     <!-- /.wrapper -->
+
 </body>
+
 
 </html>

@@ -5,6 +5,7 @@ class Competences {
     private $Nom;
     private $Code;
     private $Reference;
+    private $Description;
 
     public function setId($Id) {
         $this->Id = $Id;
@@ -23,6 +24,10 @@ class Competences {
         $this->Reference = $Reference;
     }
 
+    public function setDescription($Description) {
+        $this->Description = $Description;
+    }
+
     public function getNom() {
         return $this->Nom;
     }
@@ -37,5 +42,9 @@ class Competences {
     
     public function getReference() {
         return $this->Reference;
+    }
+
+    public function getDescription() {
+        return $this->Description;
     }
 }

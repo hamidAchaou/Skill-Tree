@@ -30,6 +30,7 @@ class CompetencesDAO
             $gestionCompetence->setNom($competence['Nom']);
             $gestionCompetence->setCode($competence['Code']);
             $gestionCompetence->setReference($competence['Reference']);
+            $gestionCompetence->setDescription($competence['Description']);
     
             $competenceInfo[] = $gestionCompetence; 
         }
@@ -55,6 +56,7 @@ class CompetencesDAO
         $getCompetence->setNom($competence['Nom']);
         $getCompetence->setCode($competence['Code']);
         $getCompetence->setReference($competence['Reference']);
+        $getCompetence->setDescription($competence['Reference']);
         
         $competenceInfo[] = $getCompetence;
         
@@ -65,9 +67,9 @@ class CompetencesDAO
     // Ajouter des compétences
     public function AddCompetence($competence)
     {
-        $sql = "INSERT INTO `Competences` (`Nom`, `Code`, `Reference`) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO `Competences` (`Nom`, `Code`, `Reference`, `Description`) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$competence->getNom(), $competence->getCode(), $competence->getReference()]);
+        $stmt->execute([$competence->getNom(), $competence->getCode(), $competence->getReference(), $competence->getDescription()]);
 
         header('location: ../../Presentation/index.php?success=addCompetencesSuccess');
 
@@ -78,12 +80,13 @@ class CompetencesDAO
         $stmt = $this->pdo->prepare("UPDATE competences
             SET Nom = ?,
             Code = ?,
-            Reference = ?
+            Reference = ?,
+            Description = ?
             WHERE Id = ?");
     
         $competence = $dataCompenent[0];
     
-        if (!$stmt->execute([$competence->getNom(), $competence->getCode(), $competence->getReference(), $competence->getId()])) {
+        if (!$stmt->execute([$competence->getNom(), $competence->getCode(), $competence->getReference(), $competence->getDescription(), $competence->getId()])) {
             $stmt->closeCursor();
             header("location: ../Presentation/edit-competences.php?error=stmtfailed");
             exit();

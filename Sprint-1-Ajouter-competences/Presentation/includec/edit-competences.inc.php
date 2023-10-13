@@ -5,11 +5,12 @@ if(isset($_POST['editCompetences'])) {
     $Nom = $_POST['nom'];
     $Code = $_POST['code'];
     $Reference  = $_POST['reference'];
+    $Description  = $_POST['description'];
 
 
 
     // validation Input
-    if(empty($Nom || $Code || $Reference)) {
+    if(empty($Nom || $Code || $Reference || $Description)) {
         die("Please fill in all required fields.");
     }
 
@@ -21,9 +22,9 @@ if(isset($_POST['editCompetences'])) {
     $competence->setNom($Nom);
     $competence->setCode($Code);
     $competence->setReference($Reference);
+    $competence->setDescription($Description);
 
     $dataCompenent[] = $competence;
-    var_dump($dataCompenent);
 
     $CompetenceBLO = new CompetenceBLO();
     $AddCompetence = $CompetenceBLO->updateCompetence($dataCompenent);

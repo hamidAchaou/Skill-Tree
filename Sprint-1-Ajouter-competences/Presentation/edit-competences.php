@@ -32,7 +32,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Edit Skill</h1>
+                            <h1 class="m-0">Modifier la compétence</h1>
                         </div>
                     </div>
                 </div>
@@ -56,6 +56,10 @@
                             ?>
                             <form action="./includec/edit-competences.inc.php?Id=<?php echo $Id ?>" method="post">
                                 <div class="mb-3">
+                                        <label for="reference" class="form-label">Reference</label>
+                                        <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference" value="<?php echo $Reference ?>">
+                                    </div>    
+                                <div class="mb-3">
                                     <label for="code" class="form-label">Code</label>
                                     <input type="text" class="form-control" id="code" name="code" placeholder="Enter code" value="<?php echo $Code ?>">
                                 </div>
@@ -64,9 +68,11 @@
                                     <input type="text" class="form-control" id="name" name="nom" placeholder="Enter name" value="<?php echo $Nom ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="reference" class="form-label">Reference</label>
-                                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference" value="<?php echo $Reference ?>">
+                                    <label for="reference" class="form-label">Description</label>
+                                    <input type="text" class="form-control" id="description" name="description" placeholder="Entrez la description" required>
+                                    <div id="reference-error" class="invalid-feedback"></div>
                                 </div>
+
                                 <button type="submit" class="btn btn-primary" name="editCompetences">Update Skill</button>
                             </form>
                         </div>
