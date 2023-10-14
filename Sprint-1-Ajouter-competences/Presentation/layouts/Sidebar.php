@@ -1,14 +1,21 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed" style="top: 0;">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
+    <a href="./index.php" class="brand-link">
         <img src="./asset/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white">
         <span class="brand-text font-weight-light">SoliCoders</span>
     </a>
+    <div class="brand-link text-center">
+                        <p>
+                            <?php
+                            echo $_SESSION['Nom']; ?>
+                        </p>
+                    </div>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
                 <!-- Skills Management -->
                 <li class="nav-item">
                     <a href="./index.php" class="nav-link">

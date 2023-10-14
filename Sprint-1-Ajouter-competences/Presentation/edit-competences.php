@@ -1,6 +1,8 @@
 <?php 
 include_once "../loader.php"; // get loader links
 include_once "./layouts/heade.php"; // get Head
+session_start(); // start session
+
 ?>
 <body class="sidebar-mini">
     <div class="wrapper">
@@ -47,30 +49,28 @@ include_once "./layouts/heade.php"; // get Head
                             
                             include_once "./layouts/flashbag.php"; // get Flashbag
                             ?>
-                            <form action="./includec/edit-competences.inc.php?Id=<?php echo $Id ?>" method="post">
-                        
-                                <div class="mb-3">
-                                        <label for="reference" class="form-label">Reference</label>
-                                        <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference" value="<?php echo $Reference ?>">
-                                    </div>    
-                                <div class="mb-3">
-                                    <label for="code" class="form-label">Code</label>
-                                    <input type="text" class="form-control" id="code" name="code" placeholder="Enter code" value="<?php echo $Code ?>">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" name="nom" placeholder="Enter name" value="<?php echo $Nom ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputDescription">Description</label>
-                                    <textarea name="description" id="inputDescription" class="form-control" required oninvalid="this.setCustomValidity('Ajouter ce champ s\'ils vous plait')" oninput="setCustomValidity('')">
-                                    <?php echo $Description ?>
-                                    </textarea>
-                                    <div id="reference-error" class="invalid-feedback"></div>
-                                </div>
+<form action="./includec/edit-competences.inc.php?Id=<?php echo $Id ?>" method="post">
+    <div class="mb-3">
+        <label for="reference" class="form-label">Reference</label>
+        <input type="text" class="form-control" id="reference" name="reference" placeholder="Enter reference" value="<?php echo $Reference ?>" required>
+    </div>
+    <div class="mb-3">
+        <label for="code" class="form-label">Code</label>
+        <input type="text" class="form-control" id="code" name="code" placeholder="Enter code" value="<?php echo $Code ?>" required>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="nom" placeholder="Enter name" value="<?php echo $Nom ?>" required title="Please enter a name">
+    </div>
+    <div class="form-group">
+        <label for="inputDescription">Description</label>
+        <textarea name="description" id="inputDescription" class="form-control" required oninvalid="this.setCustomValidity('Ajouter ce champ s\'il vous plaît')" oninput="setCustomValidity('')">
+        <?php echo $Description ?>
+        </textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" name="editCompetences">Modifier compétence</button>
+</form>
 
-                                <button type="submit" class="btn btn-primary" name="editCompetences">modifier compétence</button>
-                            </form>
                         </div>
                     </div>
                 </div>

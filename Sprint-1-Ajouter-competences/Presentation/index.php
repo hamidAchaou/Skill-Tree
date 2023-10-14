@@ -24,7 +24,7 @@ include_once "./layouts/heade.php"; // get Head
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Compétences</h1>
+                            <h1 class="m-0">Arbre des Compétences</h1>
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@ include_once "./layouts/heade.php"; // get Head
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Compétences</h3>
+                            <h2 class="card-title">Arbre des Compétences</h2>
                             <div class="card-tools">
                                 <a href="./ajouter-competences.php" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</a>
                             </div>
@@ -102,20 +102,20 @@ include_once "./layouts/heade.php"; // get Head
         <!-- Modal DElete Competences -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete competence</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h2>Ar you sur delete this competence ?</h2>
-                    </div>
-                    <form action="./includec/delete-competence.inc.php" method="post" class="modal-footer">
-                        <input type="hidden" name="id" id="id">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="competenceID" class="btn btn-danger">DELETE</button>
-                    </form>
-                </div>
+            <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Supprimer la compétence</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Etes-vous sûr de supprimer cette compétence ?</h4>
+            </div>
+            <form action="./includec/delete-competence.inc.php" method="post" class="modal-footer">
+                <input type="hidden" name="id" id="id">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" name="competenceID" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
             </div>
         </div>
         <!-- /.content-wrapper -->

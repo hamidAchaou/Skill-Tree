@@ -2,6 +2,8 @@
     if (isset($_GET['error'])) {
         if ($_GET['error'] == "emptyinput") {
             echo '<div class="alert alert-danger text-center">Please fill in all fields.</div>';
+        }elseif ($_GET['error'] == "invalidinput") {
+            echo '<div class="alert alert-danger text-center">Invalid input. Please check the format of your data..</div>';
         } elseif ($_GET['error'] == "usernotfoundEmail") {
             echo '<div class="alert alert-danger text-center">youre Emain is incorrect.</div>';
         } elseif ($_GET['error'] == "worningpassword") {
