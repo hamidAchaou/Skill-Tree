@@ -144,7 +144,7 @@
         <!-- /.content-wrapper -->
 
         <!-- main Js -->
-        <script src="./asset/JS/main.js"></script>
+        <script src="../../asset/JS/main.js"></script>
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Bootstrap 5 JavaScript -->
