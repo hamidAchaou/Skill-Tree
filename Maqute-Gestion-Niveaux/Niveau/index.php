@@ -11,16 +11,10 @@
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left Navbar Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-        </nav>
+        <?php include_once "../layouts/navbar.php"?>
         <!-- Main Sidebar Container -->
-        <?php include_once "./layouts/Sidebar.php" ?>
+        <!-- Main Sidebar Container -->
+        <?php include_once "../layouts/Sidebar.php" ?>
         <!-- Content Wrapper -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -40,7 +34,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Skills</h3>
                             <div class="card-tools">
-                                <a href="./ajouter-competences.php" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</a>
+                                <a href="./ajouter.php" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -49,32 +43,32 @@
                                     <tr>
                                         <th>Nom</th>
                                         <th>Description</th>
-                                        <th>Actions</th>
+                                        <th style="width: 12%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>emetteur</td>
                                         <td>HyperText Markup Language</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                        <td class="text-center">
+                                            <a href="./edit.php" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i> </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>adapters</td>
                                         <td>Cascading Style Sheets</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                        <td class="text-center">
+                                            <a href="./edit.php" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i> </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>maitrises</td>
                                         <td>Cascading Style Sheets</td>
-                                        <td>
-                                            <a href="./edit-competences.php" class="btn btn-xs btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                        <td class="text-center">
+                                            <a href="./edit.php" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i> </a>
                                         </td>
                                     </tr>
                                     <!-- Add more rows for additional skills -->

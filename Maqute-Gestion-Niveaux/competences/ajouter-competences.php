@@ -11,16 +11,10 @@
 <body class="sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left Navbar Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-        </nav>
+        <?php include_once "../layouts/navbar.php"?>
             <!-- Sidebar -->
-            <?php include_once "./layouts/Sidebar.php" ?>
+            <?php include_once "../layouts/Sidebar.php" ?>
+
         <!-- Content Wrapper -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -28,7 +22,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">modifier des Niveaux</h1>
+                            <h1 class="m-0">Ajouter une compétence</h1>
                         </div>
                     </div>
                 </div>
@@ -40,15 +34,22 @@
                         <div class="card-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nom</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter name" value="Skill 1">
+                                    <label for="code" class="form-label">Code</label>
+                                    <input type="text" class="form-control" id="code" placeholder="Enter code">
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="reference" class="form-label">Reference</label>
+                                    <input type="text" class="form-control" id="reference" placeholder="Enter reference">
+                                </div>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" rows="3" placeholder="Enter description">This is skill 1.</textarea>
+                                    <textarea class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update Skill</button>
+                                <button type="submit" class="btn btn-primary">Add Skill</button>
                             </form>
                         </div>
                     </div>

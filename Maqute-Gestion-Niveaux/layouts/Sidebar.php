@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed" style="top: 0;">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-        <img src="./asset/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white">
+        <img src="../asset/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle bg-white">
         <span class="brand-text font-weight-light">SoliCoders</span>
     </a>
     <!-- Sidebar -->
@@ -11,7 +11,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Skills Management -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="../competences/index.php" class="nav-link">
                         <i class="fa-solid fa-list-check"></i>
                         <p>
                             Gestion des compétences
@@ -20,7 +20,7 @@
                 </li>
                 <!-- Niveau Management -->
                 <li class="nav-item">
-                    <a href="./index.php" class="nav-link">
+                    <a href="../Niveau/index.php" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Gestion des niveaux
@@ -39,7 +39,7 @@
                 
                 <!-- Logout Button -->
                 <li class="nav-item">
-                    <a href="../BLL/authBLO/logoute.php" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Logout
