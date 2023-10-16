@@ -87,6 +87,8 @@ if (!isset($_SESSION['Nom'])) {
 
         // Check if the required fields are empty
         if (document.getElementById("reference").value.trim() === "") {
+            document.getElementById("reference").focus();
+        
             document.getElementById("referenceError").innerHTML = "Veuillez entrer la référence (Ce champ est obligatoire)";
             hasError = true;
         } else {
@@ -94,6 +96,7 @@ if (!isset($_SESSION['Nom'])) {
         }
 
         if (document.getElementById("nom").value.trim() === "") {
+            document.getElementById("nom").focus();
             document.getElementById("nomError").innerHTML = "Veuillez entrer le nom (Ce champ est obligatoire)";
             hasError = true;
         } else {
