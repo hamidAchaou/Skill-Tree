@@ -22,7 +22,7 @@ if (isset($_POST['ajouterCompetences'])) {
         die("Please fill in all required fields.");
     }
 
-    if (!validateWithRegex($Nom, $nameRegex) || !validateWithRegex($Code, $codeRegex) || !validateWithRegex($Reference, $referenceRegex)) {
+    if (!validateWithRegex($Nom, $nameRegex) || !validateWithRegex($Reference, $referenceRegex)) {
         header("location: ../ajouter-competences.php?error=invalidinput");
         die("Invalid input. Please check the format of your data.");
     }
