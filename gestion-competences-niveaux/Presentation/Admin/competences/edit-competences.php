@@ -3,6 +3,11 @@ include_once "../../loader.php"; // get loader links
 include_once "../layouts/heade.php"; // get Head
 session_start(); // start session
 
+// Check if Admin is not logged in
+if (!isset($_SESSION['Nom'])) {
+    header("Location: ../../Admin/auth/login.php?login=none");
+    exit();
+}
 ?>
 
 <body class="sidebar-mini">

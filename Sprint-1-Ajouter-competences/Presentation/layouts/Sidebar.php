@@ -45,16 +45,23 @@
                 </li>
                 
                 <!-- Logout Button -->
-                <li class="nav-item">
-                    <a href="../BLL/authBLO/logoute.php" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>
-                            Logout
-                        </p>
-                    </a>
-                </li>
+                    <!-- <li class="nav-item">
+                        <a href="../BLL/authBLO/logoute.php" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Logout
+                            </p>
+                        </a>
+                    </li> -->
             </ul>
         </nav>
+
+        <div class="p-3 d-flex align-items-end">
+            <a href="../../../BLL/authBLO/logoute.php" class="btn btn-danger w-100">
+                <i class="nav-icon fas fa-sign-out-alt me-2"></i>
+                Logout
+            </a>
+        </div>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
