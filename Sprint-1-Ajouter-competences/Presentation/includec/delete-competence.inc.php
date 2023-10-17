@@ -1,15 +1,17 @@
 <?php
- if (isset($_POST['competenceID'])) {
-     $id = $_POST['id'];
-     
-     include_once "../../loader.php";
-     $competenceBLO = new CompetenceBLO();
+if (isset($_POST['competenceID'])) {
+    $id = $_POST['id'];
 
-     
-    $competenceBLO->DeleteCompetence($id);
+    include_once "../../loader.php";
+    $competenceBLO = new CompetenceBLO();
 
-    // header('Location: index.php');
-    // exit; 
+    try {
+        $competenceBLO->DeleteCompetence($id);
+    } catch (Exception $e) {
+        header("location: your_error_page.php?error=" . $e->getMessage());
+        die("An error occurred: " . $e->getMessage());
+    }
 }
+
 
 ?>
